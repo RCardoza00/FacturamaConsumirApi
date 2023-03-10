@@ -53,7 +53,7 @@ namespace FacturamaConsumirApi.Controllers
 		public async Task<ActionResult> FacturasMultiFiltro(string fechaInicio,string fechaFin)
 		{
 
-			string servicio = $"https://localhost:44370/api/CfdiMultiFiltro/?fechaInicio={fechaInicio}&fechaFin={fechaFin}";
+			string servicio = $"https://localhost:44370/api/cfdi/filtrar/fechaInicio={fechaInicio}&fechaFin={fechaFin}";
 			//Response.Write("<script>alert('" + fechaInicio+fechaFin + "')</script>");
 			var json = await httpClient.GetStringAsync(servicio);
 			var listaFacturas = JsonConvert.DeserializeObject<List<FacturaModel>>(json);
