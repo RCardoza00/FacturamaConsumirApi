@@ -1,8 +1,9 @@
-﻿<!DOCTYPE html>
+﻿@model IEnumerable<ApiFacturamaTest.Models.FacturaModel>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <meta http-equiv=“X-UA-Compatible” content=“IE=8” />
+    <meta http-equiv=“X-UA-Compatible” content=“IE =8” />
 
     <meta charset="utf-8">
 
@@ -104,7 +105,7 @@
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-md-6 col-xl-4 col-xxl-2 mt-2 mt-md-0">
-                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="radioBtnFecha">
+                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="radioBtnFecha" onclick="enableFechasEmision()">
 
                                 <label class="form-label fw-semibold text-gray" for="StartDate">
                                     Fecha de emision
@@ -124,14 +125,23 @@
                             </div>
 
                             <div class="col-md-6 col-xl-4 col-xxl-2 mt-2 mt-md-0">
-                                <label class="form-label fw-semibold text-gray" for="folioFiscal">RFC:</label>
+                                <label class="form-label fw-semibold text-gray" for="rfcEmisor">RFC Emisor:</label>
 
-                                <input class="form-control" type="text" placeholder="RFC"></input>
+                                <input class="form-control" type="text" placeholder="RFC" id="rfcEmisor" name="rfcEmisor"></input>
+
+
+                            </div>
+                            <div class="col-md-6 col-xl-4 col-xxl-2 mt-2 mt-md-0">
+                                <label class="form-label fw-semibold text-gray" for="rfcReceptor">RFC Receptor:</label>
+
+                                <input class="form-control" type="text" placeholder="RFC" name="rfcReceptor" id="rfcReceptor"></input>
+
+
                             </div>
 
 
                             <div class="col-md-6 col-xl-4 col-xxl-2 mt-2 mt-md-0">
-                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="radioBtnFolio">
+                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="radioBtnFolio" onclick="enableFolioFiscal()">
 
                                 <label class="form-label fw-semibold text-gray" for="folioFiscal">Folio Fiscal *</label>
 
@@ -151,7 +161,7 @@
                                         </path>
                                     </svg>
 
-                                    &nbsp;BuscarFAc
+                                    &nbsp;Buscar
                                 </button>
 
                             </div>
@@ -205,61 +215,70 @@
 
                         <ul class="list-group list-group-flush border-0 overflow-auto"
                             style="min-height: 30vh;height: calc(100vh - 30vh);">
-
-                            @foreach (var factura in Model)
+                            @if (Model.Any())
                             {
 
-                                <li class="list-group-item border-0">
-                                    <div class="d-flex justify-content-between">
-                                        <div>
-                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="-64 0 512 512" width="1em"
-                                                 height="1em" fill="currentColor" class="fs-5 text-success">
-                                                <!-- ! . -->
-                                                <path d="M365.3 93.38l-74.63-74.64C278.6 6.742 262.3 0 245.4 0L64-.0001c-35.35 0-64 28.65-64 64l.0065 384c0 35.34 28.65 64 64 64H320c35.2 0 64-28.8 64-64V138.6C384 121.7 377.3 105.4 365.3 93.38zM336 448c0 8.836-7.164 16-16 16H64.02c-8.838 0-16-7.164-16-16L48 64.13c0-8.836 7.164-16 16-16h160L224 128c0 17.67 14.33 32 32 32h79.1V448zM96 280C96 293.3 106.8 304 120 304h144C277.3 304 288 293.3 288 280S277.3 256 264 256h-144C106.8 256 96 266.8 96 280zM264 352h-144C106.8 352 96 362.8 96 376s10.75 24 24 24h144c13.25 0 24-10.75 24-24S277.3 352 264 352z">
-                                                </path>
-                                            </svg>
+                                foreach (var factura in Model)
+                                {
+
+                                    <li class="list-group-item border-0">
+                                        <div class="d-flex justify-content-between">
+                                            <div>
+                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="-64 0 512 512" width="1em"
+                                                     height="1em" fill="currentColor" class="fs-5 text-success">
+                                                    <!-- ! . -->
+                                                    <path d="M365.3 93.38l-74.63-74.64C278.6 6.742 262.3 0 245.4 0L64-.0001c-35.35 0-64 28.65-64 64l.0065 384c0 35.34 28.65 64 64 64H320c35.2 0 64-28.8 64-64V138.6C384 121.7 377.3 105.4 365.3 93.38zM336 448c0 8.836-7.164 16-16 16H64.02c-8.838 0-16-7.164-16-16L48 64.13c0-8.836 7.164-16 16-16h160L224 128c0 17.67 14.33 32 32 32h79.1V448zM96 280C96 293.3 106.8 304 120 304h144C277.3 304 288 293.3 288 280S277.3 256 264 256h-144C106.8 256 96 266.8 96 280zM264 352h-144C106.8 352 96 362.8 96 376s10.75 24 24 24h144c13.25 0 24-10.75 24-24S277.3 352 264 352z">
+                                                    </path>
+                                                </svg>
+
+                                                <span class="text-primary-1000">
+                                                    Folio:&nbsp;
+
+                                                    <span class="text-muted">@factura.CfdiFolioFiscal</span>
+                                                </span>
+                                            </div>
 
                                             <span class="text-primary-1000">
-                                                Folio:&nbsp;
+                                                Fecha:&nbsp;
 
-                                                <span class="text-muted">@factura.CfdiFolioFiscal</span>
+                                                <span class="text-muted">@factura.CfdiFecha</span>
                                             </span>
                                         </div>
 
-                                        <span class="text-primary-1000">
-                                            Fecha:&nbsp;
-
-                                            <span class="text-muted">@factura.CfdiFecha</span>
-                                        </span>
-                                    </div>
-
-                                    <div class="d-flex flex-column">
-                                        <span class="text-primary-1000">
-                                            Receptor:&nbsp;
-
-                                            <span class="text-muted">@factura.CfdiRSocEmisor</span>
-                                        </span>
-
-                                        <span class="text-primary-1000">
-                                            RFC:&nbsp;
-
-                                            <span class="text-muted">@factura.CfdiRfcEmisor</span>
-                                        </span>
-                                    </div>
-
-                                    <div class="d-flex justify-content-between">
-                                        <div>
+                                        <div class="d-flex flex-column">
                                             <span class="text-primary-1000">
-                                                Total:&nbsp;
+                                                Receptor:&nbsp;
 
-                                                <span class="text-muted">$@factura.CfdiTotal</span>
+                                                <span class="text-muted">@factura.CfdiRSocEmisor</span>
+                                            </span>
+
+                                            <span class="text-primary-1000">
+                                                RFC:&nbsp;
+
+                                                <span class="text-muted">@factura.CfdiRfcEmisor</span>
                                             </span>
                                         </div>
 
-                                        <span class="fw-semibold text-primary-1000">PUE I&nbsp;</span>
-                                    </div>
-                                </li>
+                                        <div class="d-flex justify-content-between">
+                                            <div>
+                                                <span class="text-primary-1000">
+                                                    Total:&nbsp;
 
+                                                    <span class="text-muted">$@factura.CfdiTotal</span>
+                                                </span>
+                                            </div>
+
+                                            <span class="fw-semibold text-primary-1000">PUE I&nbsp;</span>
+                                        </div>
+                                    </li>
+
+                                }
+
+                            }
+                            else
+                            {
+                                // show message when empty
+                                <p>No announcements</p>
                             }
                         </ul>
                     </div>
@@ -300,15 +319,15 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/Scripts/sidebar.js"></script>
-
+    <script src="~/Scripts/JavaScript.js"></script>
     <script>
         function determinaAccion() {
-            if (document.getElementById('radioBtnFecha').checked) {
-                location.href='@Url.Action("FacturasMultiFiltro", "Home")?fechaInicio='+ document.getElementById('startDate').value+'&fechaFin='+ document.getElementById('endDate').value;
-            } else if (document.getElementById('radioBtnFolio').checked) {
-                location.href = '@Url.Action("FacturasFolio", "Home")?FolioFiscal=' + document.getElementById('FolioFiscal').value;
-            }
-        }
+    if (document.getElementById('radioBtnFecha').checked) {
+        location.href = '@Url.Action("FacturasMultiFiltro", "Home")?fechaInicio=' + document.getElementById('startDate').value + '&fechaFin=' + document.getElementById('endDate').value + '&rfcEmisor=' + document.getElementById("rfcEmisor").value +'&rfcReceptor='+document.getElementById("rfcReceptor").value;
+    } else if (document.getElementById('radioBtnFolio').checked) {
+        location.href = '@Url.Action("FacturasFolio", "Home")?FolioFiscal=' + document.getElementById('FolioFiscal').value;
+    }
+}
     </script>
 
 </body>
