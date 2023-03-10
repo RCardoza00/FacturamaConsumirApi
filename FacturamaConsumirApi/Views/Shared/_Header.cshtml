@@ -2,15 +2,17 @@
 <html lang="en">
 
 <head>
+    <meta http-equiv=“X-UA-Compatible” content=“IE=8” />
+
     <meta charset="utf-8">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
 
     <title>Consultar Facturas</title>
 
-    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/Content/bootstrap.min.css">
 
-    <link rel="stylesheet" href="assets/css/mirage.css">
+    <link rel="stylesheet" href="~/Styles/Mirage.css">
 
     <link rel="stylesheet" href="assets/css/Navbar-Right-Links-icons.css">
 </head>
@@ -90,96 +92,7 @@
     <section class="pt-3">
         <!-- Start: Tabs -->
 
-        <div class="h-100">
-            <div class="d-flex justify-content-between"></div>
-
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-lg-6 d-flex px-0">
-                        <h5 class="fw-semibold text-black-50">Consultar Facturas</h5>
-                    </div>
-
-                    <div class="col-lg-6 d-flex justify-content-end">
-                        <a class="fs-6 d-flex align-items-center me-3 link-primary-1000" href="#">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="-32 0 512 512" width="1em" height="1em"
-                                 fill="currentColor" class="me-1">
-                                <!-- ! . -->
-                                <path d="M432 256c0 17.69-14.33 32.01-32 32.01H256v144c0 17.69-14.33 31.99-32 31.99s-32-14.3-32-31.99v-144H48c-17.67 0-32-14.32-32-32.01s14.33-31.99 32-31.99H192v-144c0-17.69 14.33-32.01 32-32.01s32 14.32 32 32.01v144h144C417.7 224 432 238.3 432 256z">
-                                </path>
-                            </svg>
-
-                            Factura 4.0
-                        </a>
-
-                        <a class="fs-6 d-flex align-items-center me-3 link-primary-1000" href="#">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="-32 0 512 512" width="1em" height="1em"
-                                 fill="currentColor" class="me-1">
-                                <!-- ! . -->
-                                <path d="M432 256c0 17.69-14.33 32.01-32 32.01H256v144c0 17.69-14.33 31.99-32 31.99s-32-14.3-32-31.99v-144H48c-17.67 0-32-14.32-32-32.01s14.33-31.99 32-31.99H192v-144c0-17.69 14.33-32.01 32-32.01s32 14.32 32 32.01v144h144C417.7 224 432 238.3 432 256z">
-                                </path>
-                            </svg>
-
-                            Factura 3.3
-                        </a>
-
-                        <a class="fs-6 link-dark d-flex align-items-center" href="#">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="1em" height="1em"
-                                 fill="currentColor" class="me-1">
-                                <!-- ! . -->
-                                <path d="M500.3 443.7l-119.7-119.7c27.22-40.41 40.65-90.9 33.46-144.7C401.8 87.79 326.8 13.32 235.2 1.723C99.01-15.51-15.51 99.01 1.724 235.2c11.6 91.64 86.08 166.7 177.6 178.9c53.8 7.189 104.3-6.236 144.7-33.46l119.7 119.7c15.62 15.62 40.95 15.62 56.57 0C515.9 484.7 515.9 459.3 500.3 443.7zM79.1 208c0-70.58 57.42-128 128-128s128 57.42 128 128c0 70.58-57.42 128-128 128S79.1 278.6 79.1 208z">
-                                </path>
-                            </svg>
-
-                            Factura 4.0
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="container-fluid mt-3">
-                <div class="row">
-                    <div class="col-12 col-md-4 col-xl-2 col-xxl-3 d-flex align-items-center">
-                        <form class="w-100">
-                            <input class="form-control" type="text" placeholder="Búsqueda de facturas"></input>
-                        </form>
-                    </div>
-
-                    <div class="col-12 col-md-3 col-xl-2 col-xxl-1 d-flex align-items-center">
-                        <form class="w-100 mt-2 mt-md-0">
-                            <input class="form-control" type="number" value="2023"></input>
-                        </form>
-                    </div>
-
-                    <div class="col-md-12 col-xl-8 m-auto mt-2 mt-xl-0 overflow-auto px-2 pb-2 pb-md-0">
-                        <div class="btn-group shadow-sm w-100" role="group" style="height: 64px;">
-                            <button class="btn active btn-primary-1000" type="button">Ene</button>
-
-                            <button class="btn btn-primary-1000" type="button">Feb</button>
-
-                            <button class="btn btn-primary-1000" type="button">Mar</button>
-
-                            <button class="btn btn-primary-1000" type="button">Abr</button>
-
-                            <button class="btn btn-primary-1000" type="button">May</button>
-
-                            <button class="btn btn-primary-1000" type="button">Jun</button>
-
-                            <button class="btn btn-primary-1000" type="button">Jul</button>
-
-                            <button class="btn btn-primary-1000" type="button">Ago</button>
-
-                            <button class="btn btn-primary-1000" type="button">Sep</button>
-
-                            <button class="btn btn-primary-1000" type="button">Oct</button>
-
-                            <button class="btn btn-primary-1000" type="button">Nov</button>
-
-                            <button class="btn btn-primary-1000" type="button">Dic</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+       
 
         <!-- End: Tabs -->
     </section>
@@ -193,62 +106,47 @@
                 <form>
                     <div class="container-fluid">
                         <div class="row">
-                            <div class="col-md-6 col-xl-4 col-xxl-3">
-                                <label class="form-label fw-semibold text-gray" for="expedicion">
-                                    Seleccionar Lugar de expedición
+                            <div class="col-md-6 col-xl-4 col-xxl-2 mt-2 mt-md-0">
+                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="radioBtnFecha">
+
+                                <label class="form-label fw-semibold text-gray" for="StartDate">
+                                    Fecha de emision
                                 </label>
 
-                                <select class="form-select" name="expedicion">
-                                    <option value="">
-                                        Todos los lugares de expedición
-                                    </option>
-                                </select>
+                                <input type="date" id="startDate" name="fechaInicio"
+                                       value="2023-01-01" >
                             </div>
 
                             <div class="col-md-6 col-xl-4 col-xxl-2 mt-2 mt-md-0">
-                                <label class="form-label fw-semibold text-gray" for="expedicion">
-                                    Seleccionar
-                                    Serie:
+                                <label class="form-label fw-semibold text-gray" for="EndDate">
+                                    Fecha Fin
                                 </label>
 
-                                <select class="form-select" name="expedicion">
-                                    <option value="">Todas las series</option>
-                                </select>
+                                <input type="date" id="endDate" name="fechaFin"
+                                       value="2023-01-01"  >
                             </div>
 
-                            <div class="col-md-5 col-xl-4 col-xxl-2 mt-2 mt-xl-0">
-                                <label class="form-label fw-semibold text-gray" for="expedicion">Búsqueda:</label>
+                            <div class="col-md-6 col-xl-4 col-xxl-2 mt-2 mt-md-0">
+                                <label class="form-label fw-semibold text-gray" for="folioFiscal">RFC:</label>
 
-                                <input class="form-control" type="text" placeholder="Folio, RFC, Razón Social"></input>
+                                <input class="form-control" type="text" placeholder="RFC"></input>
                             </div>
 
-                            <div class="col-md-3 col-xl-3 col-xxl-3 d-flex justify-content-center align-items-center mt-2 mt-xxl-0">
-                                <div class="dropdown">
-                                    <button class="btn dropdown-toggle dropdown-primary-1000" aria-expanded="false"
-                                            data-bs-toggle="dropdown" type="button">
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="-32 0 512 512" width="1em"
-                                             height="1em" fill="currentColor" class="me-2">
-                                            <!-- ! . -->
-                                            <path d="M432 256c0 17.69-14.33 32.01-32 32.01H256v144c0 17.69-14.33 31.99-32 31.99s-32-14.3-32-31.99v-144H48c-17.67 0-32-14.32-32-32.01s14.33-31.99 32-31.99H192v-144c0-17.69 14.33-32.01 32-32.01s32 14.32 32 32.01v144h144C417.7 224 432 238.3 432 256z">
-                                            </path>
-                                        </svg>
+                            
+                            <div class="col-md-6 col-xl-4 col-xxl-2 mt-2 mt-md-0">
+                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="radioBtnFolio">
 
-                                        Más filtros
-                                    </button>
+                                <label class="form-label fw-semibold text-gray" for="folioFiscal">Folio Fiscal *</label>
 
-                                    <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="#">First Item</a>
-
-                                        <a class="dropdown-item" href="#">Second Item</a>
-
-                                        <a class="dropdown-item" href="#">Third Item</a>
-                                    </div>
-                                </div>
+                                <input class="form-control" type="text" placeholder="FOLIO FISCAL" name="FolioFiscal" id="FolioFiscal"></input>
                             </div>
-
+                            
+                           
                             <div class="col-md-4 col-xl-3 col-xxl-2 d-flex justify-content-center align-items-center mt-2 mt-xxl-0">
                                 <button class="btn d-flex justify-content-center align-items-center w-50 btn-secondary-700"
-                                        type="button">
+                                        @{ var botonchecado = "asd"; }
+                                        type="button" value="FacturasFolio" onclick="location.href='@Url.Action("FacturasMultiFiltro", "Home")?fechaInicio'+ document.getElementById('startDate').value+'&fechaFin='+ document.getElementById('endDate').value"
+
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="1em"
                                          height="1em" fill="currentColor">
                                         <!-- ! . -->
@@ -256,8 +154,9 @@
                                         </path>
                                     </svg>
 
-                                    &nbsp;Buscar
+                                    &nbsp;BuscarFAc
                                 </button>
+                                
                             </div>
                         </div>
                     </div>
@@ -312,6 +211,7 @@
 
                             @foreach (var factura in Model)
                             {
+                                
                                 <li class="list-group-item border-0">
                                     <div class="d-flex justify-content-between">
                                         <div>
@@ -325,7 +225,7 @@
                                             <span class="text-primary-1000">
                                                 Folio:&nbsp;
 
-                                                <span class="text-muted">@factura.CfdiId</span>
+                                                <span class="text-muted">@factura.CfdiFolioFiscal</span>
                                             </span>
                                         </div>
 
@@ -374,78 +274,7 @@
 
                         <div class="bg-white d-flex justify-content-end card-header">
                             <ul class="nav nav-pills card-header-pills px-3 py-1">
-                                <li class="nav-item ms-3">
-                                    <a class="d-flex align-items-center link-primary-1000" href="#">
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="-64 0 512 512" width="1em"
-                                             height="1em" fill="currentColor" class="me-1">
-                                            <path d="M320 464C328.8 464 336 456.8 336 448V416H384V448C384 483.3 355.3 512 320 512H64C28.65 512 0 483.3 0 448V416H48V448C48 456.8 55.16 464 64 464H320zM256 160C238.3 160 224 145.7 224 128V48H64C55.16 48 48 55.16 48 64V192H0V64C0 28.65 28.65 0 64 0H229.5C246.5 0 262.7 6.743 274.7 18.75L365.3 109.3C377.3 121.3 384 137.5 384 154.5V192H336V160H256zM88 224C118.9 224 144 249.1 144 280C144 310.9 118.9 336 88 336H80V368C80 376.8 72.84 384 64 384C55.16 384 48 376.8 48 368V240C48 231.2 55.16 224 64 224H88zM112 280C112 266.7 101.3 256 88 256H80V304H88C101.3 304 112 293.3 112 280zM160 240C160 231.2 167.2 224 176 224H200C226.5 224 248 245.5 248 272V336C248 362.5 226.5 384 200 384H176C167.2 384 160 376.8 160 368V240zM192 352H200C208.8 352 216 344.8 216 336V272C216 263.2 208.8 256 200 256H192V352zM336 224C344.8 224 352 231.2 352 240C352 248.8 344.8 256 336 256H304V288H336C344.8 288 352 295.2 352 304C352 312.8 344.8 320 336 320H304V368C304 376.8 296.8 384 288 384C279.2 384 272 376.8 272 368V240C272 231.2 279.2 224 288 224H336z">
-                                            </path>
-                                        </svg>
-
-                                        PDF
-                                    </a>
-                                </li>
-
-                                <li class="nav-item ms-3">
-                                    <a class="d-flex align-items-center link-primary-1000" href="#">
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -64 640 640" width="1em"
-                                             height="1em" fill="currentColor" class="me-1">
-                                            <path d="M414.8 40.79L286.8 488.8C281.9 505.8 264.2 515.6 247.2 510.8C230.2 505.9 220.4 488.2 225.2 471.2L353.2 23.21C358.1 6.216 375.8-3.624 392.8 1.232C409.8 6.087 419.6 23.8 414.8 40.79H414.8zM518.6 121.4L630.6 233.4C643.1 245.9 643.1 266.1 630.6 278.6L518.6 390.6C506.1 403.1 485.9 403.1 473.4 390.6C460.9 378.1 460.9 357.9 473.4 345.4L562.7 256L473.4 166.6C460.9 154.1 460.9 133.9 473.4 121.4C485.9 108.9 506.1 108.9 518.6 121.4V121.4zM166.6 166.6L77.25 256L166.6 345.4C179.1 357.9 179.1 378.1 166.6 390.6C154.1 403.1 133.9 403.1 121.4 390.6L9.372 278.6C-3.124 266.1-3.124 245.9 9.372 233.4L121.4 121.4C133.9 108.9 154.1 108.9 166.6 121.4C179.1 133.9 179.1 154.1 166.6 166.6V166.6z">
-                                            </path>
-                                        </svg>
-
-                                        XML
-                                    </a>
-                                </li>
-
-                                <li class="nav-item ms-3">
-                                    <a class="d-flex align-items-center link-primary-1000" href="#">
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="1em"
-                                             height="1em" fill="currentColor" class="me-1">
-                                            <path d="M501.6 4.186c-7.594-5.156-17.41-5.594-25.44-1.063L12.12 267.1C4.184 271.7-.5037 280.3 .0431 289.4c.5469 9.125 6.234 17.16 14.66 20.69l153.3 64.38v113.5c0 8.781 4.797 16.84 12.5 21.06C184.1 511 188 512 191.1 512c4.516 0 9.038-1.281 12.99-3.812l111.2-71.46l98.56 41.4c2.984 1.25 6.141 1.875 9.297 1.875c4.078 0 8.141-1.031 11.78-3.094c6.453-3.625 10.88-10.06 11.95-17.38l64-432C513.1 18.44 509.1 9.373 501.6 4.186zM369.3 119.2l-187.1 208.9L78.23 284.7L369.3 119.2zM215.1 444v-49.36l46.45 19.51L215.1 444zM404.8 421.9l-176.6-74.19l224.6-249.5L404.8 421.9z">
-                                            </path>
-                                        </svg>
-
-                                        Enviar
-                                    </a>
-                                </li>
-
-                                <li class="nav-item ms-3">
-                                    <a class="d-flex align-items-center link-primary-1000" href="#">
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="1em"
-                                             height="1em" fill="currentColor" class="me-1">
-                                            <path d="M384 96L384 0h-112c-26.51 0-48 21.49-48 48v288c0 26.51 21.49 48 48 48H464c26.51 0 48-21.49 48-48V128h-95.1C398.4 128 384 113.6 384 96zM416 0v96h96L416 0zM192 352V128h-144c-26.51 0-48 21.49-48 48v288c0 26.51 21.49 48 48 48h192c26.51 0 48-21.49 48-48L288 416h-32C220.7 416 192 387.3 192 352z">
-                                            </path>
-                                        </svg>
-
-                                        Enviar
-                                    </a>
-                                </li>
-
-                                <li class="nav-item ms-3">
-                                    <a class="d-flex align-items-center link-primary-1000" href="#">
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="1em"
-                                             height="1em" fill="currentColor" class="me-1">
-                                            <path d="M512 256C512 397.4 397.4 512 256 512C114.6 512 0 397.4 0 256C0 114.6 114.6 0 256 0C397.4 0 512 114.6 512 256zM99.5 144.8C77.15 176.1 64 214.5 64 256C64 362 149.1 448 256 448C297.5 448 335.9 434.9 367.2 412.5L99.5 144.8zM448 256C448 149.1 362 64 256 64C214.5 64 176.1 77.15 144.8 99.5L412.5 367.2C434.9 335.9 448 297.5 448 256V256z">
-                                            </path>
-                                        </svg>
-
-                                        Cancelar
-                                    </a>
-                                </li>
-
-                                <li class="nav-item ms-3">
-                                    <a class="d-flex align-items-center link-primary-1000" href="#">
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="1em"
-                                             height="1em" fill="currentColor" class="me-1">
-                                            <path d="M448 192H64C28.65 192 0 220.7 0 256v96c0 17.67 14.33 32 32 32h32v96c0 17.67 14.33 32 32 32h320c17.67 0 32-14.33 32-32v-96h32c17.67 0 32-14.33 32-32V256C512 220.7 483.3 192 448 192zM384 448H128v-96h256V448zM432 296c-13.25 0-24-10.75-24-24c0-13.27 10.75-24 24-24s24 10.73 24 24C456 285.3 445.3 296 432 296zM128 64h229.5L384 90.51V160h64V77.25c0-8.484-3.375-16.62-9.375-22.62l-45.25-45.25C387.4 3.375 379.2 0 370.8 0H96C78.34 0 64 14.33 64 32v128h64V64z">
-                                            </path>
-                                        </svg>
-
-                                        Imprimir
-                                    </a>
-                                </li>
-
+                                
                                 <li class="nav-item ms-3">
                                     <a class="d-flex align-items-center link-primary-1000" href="#">
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="1em"
@@ -473,7 +302,8 @@
     </section>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/js/sidebar.js"></script>
+    <script src="~/Scripts/sidebar.js"></script>
+
 </body>
 
 </html>
