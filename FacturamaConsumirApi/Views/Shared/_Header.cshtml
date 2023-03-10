@@ -28,7 +28,7 @@
                 </path>
             </svg>
 
-            <img class="img-fluid ms-3" src="assets/img/Mirage-Logo.png" height="24" width="169">
+            <img class="img-fluid ms-3" src="~/images/Mirage-Logo.png" height="24" width="169">
         </div>
 
         <div class="header_img">
@@ -108,7 +108,7 @@
                                 <input class="form-check-input" type="radio" name="flexRadioDefault" id="radioBtnFecha" onclick="enableFechasEmision()">
 
                                 <label class="form-label fw-semibold text-gray" for="StartDate">
-                                    Fecha de emision
+                                    Fecha de emision inicial
                                 </label>
 
                                 <input type="date" id="startDate" name="fechaInicio"
@@ -117,7 +117,7 @@
 
                             <div class="col-md-6 col-xl-4 col-xxl-2 mt-2 mt-md-0">
                                 <label class="form-label fw-semibold text-gray" for="EndDate">
-                                    Fecha Fin
+                                    Fecha de emicion final
                                 </label>
 
                                 <input type="date" id="endDate" name="fechaFin"
@@ -284,13 +284,23 @@
                     </div>
                 </div>
 
-                <div class="col mt-3 mt-xl-0">
+                <div class="col mt-3 mt-xl-0 table-responsive">
                     <div class="card border-0 shadow-sm h-100">
                         <!-- Start: Card header -->
 
                         <div class="bg-white d-flex justify-content-end card-header">
                             <ul class="nav nav-pills card-header-pills px-3 py-1">
+                                <li class="nav-item ms-3">
+                                    <a class="d-flex align-items-center link-primary-1000" href="#" onclick="tableToExcel('tblExport', 'W3C Example Table')" value="Export to Excel>
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="1em"
+                                             height="1em" fill="currentColor" class="me-1">
+                                            <path d="M480 352h-133.5l-45.25 45.25C289.2 409.3 273.1 416 256 416s-33.16-6.656-45.25-18.75L165.5 352H32c-17.67 0-32 14.33-32 32v96c0 17.67 14.33 32 32 32h448c17.67 0 32-14.33 32-32v-96C512 366.3 497.7 352 480 352zM432 456c-13.2 0-24-10.8-24-24c0-13.2 10.8-24 24-24s24 10.8 24 24C456 445.2 445.2 456 432 456zM233.4 374.6C239.6 380.9 247.8 384 256 384s16.38-3.125 22.62-9.375l128-128c12.49-12.5 12.49-32.75 0-45.25c-12.5-12.5-32.76-12.5-45.25 0L288 274.8V32c0-17.67-14.33-32-32-32C238.3 0 224 14.33 224 32v242.8L150.6 201.4c-12.49-12.5-32.75-12.5-45.25 0c-12.49 12.5-12.49 32.75 0 45.25L233.4 374.6z">
+                                            </path>
+                                        </svg>
 
+                                        Exportar a csv
+                                    </a>
+                                </li>
                                 <li class="nav-item ms-3">
                                     <a class="d-flex align-items-center link-primary-1000" href="#">
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="1em"
@@ -307,9 +317,42 @@
 
                         <!-- End: Card header -->
 
-                        <div class="card-body overflow-auto" style="min-height: 30vh;height: calc(100vh - 30vh);">
-                            <img class="img-fluid"
-                                 src="assets/img/609d5d3c4d120e370de52b70_invoice-lp-light-border.png">
+                        <div class="card-body overflow-auto" style="width: 100%; overflow: auto;">
+                            <table  class='table' id="tblExport" >
+                                <thead>
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Folio</th>
+                                        <th scope="col">Emisor</th>
+                                        <th scope="col">Rfc Emisor</th>
+                                        <th scope="col">Receptor</th>
+                                        <th scope="col">Rfc Receptor</th>
+                                        <th scope="col">Fecha</th>
+                                        <th scope="col">Total</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @{ int i = 1;}
+                                    @foreach (var factura in Model)
+                                    {
+                                        <tr>
+                                            <th scope="row">@i</th>
+                                            <td>@factura.CfdiFolioFiscal</td>
+                                            <td>@factura.CfdiRSocEmisor</td>
+                                            <td>@factura.CfdiRfcEmisor</td>
+                                            <td>@factura.CfdiRSocReceptor</td>
+                                            <td>@factura.CfdiRfcReceptor</td>
+                                            <td>@factura.CfdiFecha</td>
+                                            <td>$@factura.CfdiTotal</td>
+                                            
+                                        </tr>
+                                        i++;
+                                    }
+
+
+
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
@@ -327,6 +370,7 @@
     } else if (document.getElementById('radioBtnFolio').checked) {
         location.href = '@Url.Action("FacturasFolio", "Home")?FolioFiscal=' + document.getElementById('FolioFiscal').value;
     }
+
 }
     </script>
 

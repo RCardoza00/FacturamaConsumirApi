@@ -4,21 +4,23 @@
     <meta http-equiv=“X-UA-Compatible” content=“IE =8” />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
-    @Styles.Render("~/Styles/css")
-    @Scripts.Render("~/Scripts/bootstrap")
-    @Scripts.Render("~/Scripts/JavaScript")
+    <title>@ViewBag.Title - Mirage</title>
+    @Scripts.Render("~/bundles/jquery")
+    @Styles.Render("~/Styles/Mirage.css")
+    @Scripts.Render("~/Scripts/bootstrap.js")
+    @Scripts.Render("~/Scripts/bootstrap.min.js")
+    @Scripts.Render("~/Scripts/JavaScript.js")
 </head>
 <body>
 
-    <div class="container body-content">
+    <div>
         @RenderBody()
-        <hr />
+        
 
     </div>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/Scripts/bootstrap")
+   
+    
     @RenderSection("scripts", required: false)
 </body>
 </html>
