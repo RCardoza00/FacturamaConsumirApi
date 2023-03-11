@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Reflection;
 using System.Threading.Tasks;
 using System.Web;
@@ -18,7 +19,8 @@ namespace FacturamaConsumirApi.Controllers
 {
 	public class HomeController : Controller
 	{
-        static HttpClient httpClient = new HttpClient();
+		string Baseurl = "https://localhost:44323/";
+		static HttpClient httpClient = new HttpClient();
         public async  Task<ActionResult> Index()
 		{
 			string servicio = "https://localhost:44323/api/cdfi";
@@ -28,35 +30,47 @@ namespace FacturamaConsumirApi.Controllers
 			return View(listaFacturas);
 		}
 
-		public async Task<ActionResult> folioFiscalini(string folioFiscal)
-		{
-			string servicio = "https://localhost:44370/api/CfdiByFolio/"+ folioFiscal;
-			var json = await httpClient.GetStringAsync(servicio);
-			var listaFacturas = JsonConvert.DeserializeObject<FacturaModel>(json);
-
-			return View(listaFacturas);
-			//Response.Write("<script>alert('" + folioFiscal + "')</script>");
-
-		}
+		
 		public async Task<ActionResult> FacturasFolio(string FolioFiscal)
 		{
+		
+
 
 			string servicio = $"https://localhost:44323/api/CdfiByFolio/{FolioFiscal}";
+			List<FacturaModel> listaFacturas = new List<FacturaModel>();
+			List<FacturaModel> Facturita=new List<FacturaModel>();
 			//Response.Write("<script>alert('" + servicio + "')</script>");
-			var json = await httpClient.GetStringAsync(servicio);
-			Exception exception = Server.GetLastError();
+			using (var client = new HttpClient())
+			{
+				//Passing service base url
+				client.BaseAddress = new Uri(Baseurl);
+				client.DefaultRequestHeaders.Clear();
+				client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+				// Sending request to find web api REST service resource GetAllEmployees using HttpClient
+				HttpResponseMessage Res = await client.GetAsync("api/CdfiByFolio/"+FolioFiscal);
+				if (Res.IsSuccessStatusCode)
+				{
+					var CfdiResponse = Res.Content.ReadAsStringAsync().Result;
+					//Deserializing the response recieved from web api and storing into the Employee list
+					var factura = JsonConvert.DeserializeObject<FacturaModel>(CfdiResponse);
+					Facturita = new List<FacturaModel> { factura };
+				}
+				return View("Index", Facturita);
 
-			HttpException httpException = exception as HttpException;
-			if (httpException == null)
-			{
-				var factura = JsonConvert.DeserializeObject<FacturaModel>(json);
-				List<FacturaModel> listaFacturas = new List<FacturaModel> { factura };
-				return View("Index", listaFacturas);
-			}else if (httpException.GetHttpCode() == 404)
-			{
-				return View("Index", "HttpError404");
 			}
-			return View("Index");
+			//var json = await httpClient.GetStringAsync(servicio);
+				//Exception exception = Server.GetLastError();
+
+				//HttpException httpException = exception as HttpException;
+
+				//var factura = JsonConvert.DeserializeObject<FacturaModel>(json);
+			
+			
+		
+		
+			
+			
+			
 			
 			
 			
@@ -67,13 +81,11 @@ namespace FacturamaConsumirApi.Controllers
 		}
 		public async Task<ActionResult> FacturasMultiFiltro(string fechaInicio,string fechaFin,string rfcEmisor,string rfcReceptor)
 		{
-
 			string servicio = $"https://localhost:44323/api/CdfiMultiFiltro/?fechaInicio={fechaInicio}&fechaFin={fechaFin}&rfcEmisor={rfcEmisor}&rfcReceptor={rfcReceptor}";
 			//Response.Write("<script>alert('" + servicio + "')</script>");
 			var json = await httpClient.GetStringAsync(servicio);
 			var listaFacturas = JsonConvert.DeserializeObject<List<FacturaModel>>(json);
-			return View("Index",listaFacturas);
-			
+			return View("Index", listaFacturas);
 		}
 
 	}
