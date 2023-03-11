@@ -227,22 +227,41 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @{ int i = 1;}
-                                    @foreach (var factura in Model)
+                                    @if (Model.Any())
                                     {
-                                        <tr>
-                                            <th scope="row">@i</th>
-                                            <td>@factura.CfdiFolioFiscal</td>
-                                            <td>@factura.CfdiRSocEmisor</td>
-                                            <td>@factura.CfdiRfcEmisor</td>
-                                            <td>@factura.CfdiRSocReceptor</td>
-                                            <td>@factura.CfdiRfcReceptor</td>
-                                            <td>@factura.CfdiFecha</td>
-                                            <td>$@factura.CfdiTotal</td>
-                                            
-                                        </tr>
-                                        i++;
+                                        int i = 1;
+                                        foreach (var factura in Model)
+                                        {
+                                            <tr>
+                                                <th scope="row">@i</th>
+                                                <td>@factura.CfdiFolioFiscal</td>
+                                                <td>@factura.CfdiRSocEmisor</td>
+                                                <td>@factura.CfdiRfcEmisor</td>
+                                                <td>@factura.CfdiRSocReceptor</td>
+                                                <td>@factura.CfdiRfcReceptor</td>
+                                                <td>@factura.CfdiFecha</td>
+                                                <td>$@factura.CfdiTotal</td>
+
+                                            </tr>
+                                            i++;
+                                        }
                                     }
+                                    else
+                                    {
+                                <tr>
+                                    <th scope="row">no registros</th>
+                                    <td>no registros</td>
+                                    <td>no registros</td>
+                                    <td>no registros</td>
+                                    <td>no registros</td>
+                                    <td>no registros</td>
+                                    <td>no registros</td>
+                                    <td>no registros</td>
+
+                                </tr>
+                                    }
+
+
 
 
 

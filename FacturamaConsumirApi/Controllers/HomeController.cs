@@ -83,9 +83,29 @@ namespace FacturamaConsumirApi.Controllers
 		{
 			string servicio = $"https://localhost:44323/api/CdfiMultiFiltro/?fechaInicio={fechaInicio}&fechaFin={fechaFin}&rfcEmisor={rfcEmisor}&rfcReceptor={rfcReceptor}";
 			//Response.Write("<script>alert('" + servicio + "')</script>");
-			var json = await httpClient.GetStringAsync(servicio);
-			var listaFacturas = JsonConvert.DeserializeObject<List<FacturaModel>>(json);
-			return View("Index", listaFacturas);
+			List<FacturaModel> EmpInfo = new List<FacturaModel>();
+			using (var client = new HttpClient())
+			{
+				//Passing service base url
+				client.BaseAddress = new Uri(Baseurl);
+				client.DefaultRequestHeaders.Clear();
+				//Define request data format
+				client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+				//Sending request to find web api REST service resource GetAllEmployees using HttpClient
+				HttpResponseMessage Res = await client.GetAsync(servicio);
+				//Checking the response is successful or not which is sent using HttpClient
+				if (Res.IsSuccessStatusCode)
+				{
+					//Storing the response details recieved from web api
+					var EmpResponse = Res.Content.ReadAsStringAsync().Result;
+					//Deserializing the response recieved from web api and storing into the Employee list
+					EmpInfo = JsonConvert.DeserializeObject<List<FacturaModel>>(EmpResponse);
+					
+				}
+				//returning the employee list to view
+				return View("Index", EmpInfo);
+
+			}
 		}
 
 	}
