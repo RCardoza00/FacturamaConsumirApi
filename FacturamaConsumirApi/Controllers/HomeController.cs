@@ -19,11 +19,11 @@ namespace FacturamaConsumirApi.Controllers
 {
 	public class HomeController : Controller
 	{
-		string Baseurl = "https://localhost:44323/";
+		string Baseurl = "http://54.203.169.36/MRGFE/";
 		static HttpClient httpClient = new HttpClient();
         public async  Task<ActionResult> Index()
 		{
-			string servicio = "https://localhost:44323/api/cdfi";
+			string servicio = "http://54.203.169.36/MRGFE/api/cfdi";
 			var json = await httpClient.GetStringAsync(servicio);
 			var listaFacturas = JsonConvert.DeserializeObject<List<FacturaModel>>(json);
 			
@@ -36,7 +36,7 @@ namespace FacturamaConsumirApi.Controllers
 		
 
 
-			string servicio = $"https://localhost:44323/api/CdfiByFolio/{FolioFiscal}";
+			//string servicio = $"https://localhost:44323/api/CdfiByFolio/{FolioFiscal}";
 			List<FacturaModel> listaFacturas = new List<FacturaModel>();
 			List<FacturaModel> Facturita=new List<FacturaModel>();
 			//Response.Write("<script>alert('" + servicio + "')</script>");
@@ -47,7 +47,7 @@ namespace FacturamaConsumirApi.Controllers
 				client.DefaultRequestHeaders.Clear();
 				client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 				// Sending request to find web api REST service resource GetAllEmployees using HttpClient
-				HttpResponseMessage Res = await client.GetAsync("api/CdfiByFolio/"+FolioFiscal);
+				HttpResponseMessage Res = await client.GetAsync("api/cfdi/folio=" + FolioFiscal);
 				if (Res.IsSuccessStatusCode)
 				{
 					var CfdiResponse = Res.Content.ReadAsStringAsync().Result;
