@@ -81,7 +81,7 @@ namespace FacturamaConsumirApi.Controllers
 		}
 		public async Task<ActionResult> FacturasMultiFiltro(string fechaInicio,string fechaFin,string rfcEmisor,string rfcReceptor)
 		{
-			string servicio = $"https://localhost:44323/api/CdfiMultiFiltro/?fechaInicio={fechaInicio}&fechaFin={fechaFin}&rfcEmisor={rfcEmisor}&rfcReceptor={rfcReceptor}";
+			string servicio = $"http://54.203.169.36/MRGFE/api/cfdi/filtrar/?fechaInicio={fechaInicio}&fechaFin={fechaFin}&rfcEmisor={rfcEmisor}&rfcReceptor={rfcReceptor}";
 			//Response.Write("<script>alert('" + servicio + "')</script>");
 			List<FacturaModel> EmpInfo = new List<FacturaModel>();
 			using (var client = new HttpClient())
