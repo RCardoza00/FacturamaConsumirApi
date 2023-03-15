@@ -33,9 +33,6 @@ namespace FacturamaConsumirApi.Controllers
 		
 		public async Task<ActionResult> FacturasFolio(string FolioFiscal)
 		{
-		
-
-
 			//string servicio = $"https://localhost:44323/api/CdfiByFolio/{FolioFiscal}";
 			List<FacturaModel> listaFacturas = new List<FacturaModel>();
 			List<FacturaModel> Facturita=new List<FacturaModel>();
@@ -59,25 +56,11 @@ namespace FacturamaConsumirApi.Controllers
 
 			}
 			//var json = await httpClient.GetStringAsync(servicio);
-				//Exception exception = Server.GetLastError();
+			//Exception exception = Server.GetLastError();
 
-				//HttpException httpException = exception as HttpException;
+			//HttpException httpException = exception as HttpException;
 
-				//var factura = JsonConvert.DeserializeObject<FacturaModel>(json);
-			
-			
-		
-		
-			
-			
-			
-			
-			
-			
-		
-
-			
-
+			//var factura = JsonConvert.DeserializeObject<FacturaModel>(json);
 		}
 		public async Task<ActionResult> FacturasMultiFiltro(string fechaInicio,string fechaFin,string rfcEmisor,string rfcReceptor)
 		{
