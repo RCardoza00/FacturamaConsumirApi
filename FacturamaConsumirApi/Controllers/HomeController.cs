@@ -26,7 +26,7 @@ namespace FacturamaConsumirApi.Controllers
 		string Baseurl = "http://54.203.169.36/MRGFE/";
 		static HttpClient httpClient = new HttpClient();
 
-		List<FacturaModel> lf = new List<FacturaModel>();
+		private static List<FacturaModel> lf = new List<FacturaModel>();
         public async  Task<ActionResult> Index()
 		{
 			string servicio = "http://54.203.169.36/MRGFE/api/cfdi";
