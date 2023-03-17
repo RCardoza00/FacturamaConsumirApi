@@ -14,6 +14,11 @@ function getDataFromTable() {
 		//gets cells of current row
 		var oCells = oTable.rows.item(i).cells;
 
+		if (oCells.item(0).innerText === 'no registros') {
+			console.log('regresa nulo');
+			return null;
+        }
+
 		data.push({
 			numero: oCells.item(0).innerHTML,
 			folio: oCells.item(1).innerHTML,
@@ -37,9 +42,14 @@ function makeCSV(data) {
 }
 
 function downloadCSV() {
+	var data = getDataFromTable();
+	if (data === null) {
+		console.log('no hace nada');
+		return;
+	}
 	// Creating a Blob for having a csv file format
 	// and passing the data with type
-	const blob = new Blob([makeCSV(getDataFromTable())], { type: 'text/csv' });
+	const blob = new Blob([makeCSV(data)], { type: 'text/csv' });
 
 	// Creating an object for downloading url
 	const url = window.URL.createObjectURL(blob);
