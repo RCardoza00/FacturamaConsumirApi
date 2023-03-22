@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ApiFacturamaTest.Models.FacturaModel>
+﻿@model IEnumerable<MRGFE.Models.CFDI>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,6 +16,12 @@
     <link rel="stylesheet" href="~/Styles/Mirage.css">
 
     <link rel="stylesheet" href="assets/css/Navbar-Right-Links-icons.css">
+
+    <script>
+        window.onload = function () {
+            enableFechasEmision();
+        }
+    </script>
 </head>
 
 <body id="body-pd" class="h-100" style="background-color: #F4F6F8;">
@@ -104,51 +110,40 @@
                 <form>
                     <div class="container-fluid">
                         <div class="row">
+                            <!-- Start: enableFechasEmision -->
                             <div class="col-md-6 col-xl-4 col-xxl-2 mt-2 mt-md-0">
-                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="radioBtnFecha" onclick="enableFechasEmision()">
-
+                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="radioBtnFecha" checked onclick="enableFechasEmision()">
                                 <label class="form-label fw-semibold text-gray" for="StartDate">
                                     Fecha de emision inicial
                                 </label>
-
-                                <input type="date" id="startDate" name="fechaInicio"
-                                       value="2023-01-01">
+                                <input type="date" id="startDate" name="fechaInicio" value="2023-01-01">
                             </div>
 
                             <div class="col-md-6 col-xl-4 col-xxl-2 mt-2 mt-md-0">
                                 <label class="form-label fw-semibold text-gray" for="EndDate">
-                                    Fecha de emicion final
+                                    Fecha de emision final
                                 </label>
-
-                                <input type="date" id="endDate" name="fechaFin"
-                                       value="2023-01-01">
+                                <input type="date" id="endDate" name="fechaFin" value="2023-01-01">
                             </div>
 
-                            <div class="col-md-6 col-xl-4 col-xxl-2 mt-2 mt-md-0">
+                            <div class="col-md-2">
                                 <label class="form-label fw-semibold text-gray" for="rfcEmisor">RFC Emisor:</label>
-
                                 <input class="form-control" type="text" placeholder="RFC" id="rfcEmisor" name="rfcEmisor"></input>
-
-
                             </div>
-                            <div class="col-md-6 col-xl-4 col-xxl-2 mt-2 mt-md-0">
+                            <div class="col-md-2">
                                 <label class="form-label fw-semibold text-gray" for="rfcReceptor">RFC Receptor:</label>
-
                                 <input class="form-control" type="text" placeholder="RFC" name="rfcReceptor" id="rfcReceptor"></input>
-
-
                             </div>
-
-
-                            <div class="col-md-6 col-xl-4 col-xxl-2 mt-2 mt-md-0">
-                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="radioBtnFolio" onclick="enableFolioFiscal()">
-
-                                <label class="form-label fw-semibold text-gray" for="folioFiscal">Folio Fiscal *</label>
-
-                                <input class="form-control" type="text" placeholder="FOLIO FISCAL" name="FolioFiscal" id="FolioFiscal"></input>
+                            <div class="col-md-1">
+                                <label class="form-label fw-semibold text-gray" for="serie">Serie:</label>
+                                <input class="form-control" type="text" placeholder="SERIE" name="serie" id="serie"></input>
                             </div>
-
-
+                            <div class="col-md-1">
+                                <label class="form-label fw-semibold text-gray" for="folio">Folio:</label>
+                                <input class="form-control" type="text" placeholder="FOLIO" name="folio" id="folio"></input>
+                            </div>
+                            <!-- End: enableFechasEmision -->
+                            <!-- Start: Buscar -->
                             <div class="col-md-4 col-xl-3 col-xxl-2 d-flex justify-content-center align-items-center mt-2 mt-xxl-0">
                                 <button class="btn d-flex justify-content-center align-items-center w-50 btn-secondary-700"
                                         @{ var botonchecado = "asd"; }
@@ -163,8 +158,17 @@
 
                                     &nbsp;Buscar
                                 </button>
-
                             </div>
+                            <!-- End: Buscar -->
+                            <!-- Start: Folio fiscal -->
+                            <div class="row mt-2">
+                                <div class="col-md-8 col-xl-6 col-xxl-4 mt-2 mt-md-0">
+                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="radioBtnFolio" onclick="enableFolioFiscal()">
+                                    <label class="form-label fw-semibold text-gray" for="folioFiscal">Folio Fiscal *</label>
+                                    <input class="form-control" type="text" placeholder="FOLIO FISCAL" name="FolioFiscal" id="FolioFiscal"></input>
+                                </div>
+                            </div>
+                            <!-- End: Folio fiscal -->
                         </div>
                     </div>
                 </form>
@@ -217,6 +221,8 @@
                                 <thead class="table-head">
                                     <tr>
                                         <th scope="col">#</th>
+                                        <th scope="col">Folio Fiscal</th>
+                                        <th scope="col">Serie</th>
                                         <th scope="col">Folio</th>
                                         <th scope="col">Emisor</th>
                                         <th scope="col">Rfc Emisor</th>
@@ -235,6 +241,8 @@
                                             <tr>
                                                 <th scope="row">@i</th>
                                                 <td>@factura.CfdiFolioFiscal</td>
+                                                <td>@factura.CfdiSerie</td>
+                                                <td>@factura.CfdiFolio</td>
                                                 <td>@factura.CfdiRSocEmisor</td>
                                                 <td>@factura.CfdiRfcEmisor</td>
                                                 <td>@factura.CfdiRSocReceptor</td>
@@ -257,7 +265,8 @@
                                             <td>no registros</td>
                                             <td>no registros</td>
                                             <td>no registros</td>
-
+                                            <td>no registros</td>
+                                            <td>no registros</td>
                                         </tr>
                                     }
                                 </tbody>
@@ -276,7 +285,7 @@
     <script>
         function determinaAccion() {
             if (document.getElementById('radioBtnFecha').checked) {
-                location.href = '@Url.Action("FacturasMultiFiltro", "Home")?fechaInicio=' + document.getElementById('startDate').value + '&fechaFin=' + document.getElementById('endDate').value + '&rfcEmisor=' + document.getElementById("rfcEmisor").value +'&rfcReceptor='+document.getElementById("rfcReceptor").value;
+                location.href = '@Url.Action("FacturasMultiFiltro", "Home")?fechaInicio=' + document.getElementById('startDate').value + '&fechaFin=' + document.getElementById('endDate').value + '&rfcEmisor=' + document.getElementById("rfcEmisor").value + '&rfcReceptor=' + document.getElementById("rfcReceptor").value + '&serie=' + document.getElementById("serie").value + '&folio=' + document.getElementById("folio").value;
             } else if (document.getElementById('radioBtnFolio').checked) {
                 location.href = '@Url.Action("FacturasFolio", "Home")?FolioFiscal=' + document.getElementById('FolioFiscal').value;
             }

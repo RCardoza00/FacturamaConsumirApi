@@ -18,20 +18,21 @@ using System.Web.UI.WebControls;
 using ApiFacturamaTest.Models;
 using Microsoft.Ajax.Utilities;
 using Newtonsoft.Json;
+using MRGFE.Models;
 
 namespace FacturamaConsumirApi.Controllers
 {
 	public class HomeController : Controller
 	{
-		string Baseurl = "http://54.203.169.36/MRGFE/";
+		string Baseurl = "https://localhost:44370/";
 		static HttpClient httpClient = new HttpClient();
 
-		private static List<FacturaModel> lf = new List<FacturaModel>();
+		private static List<CFDI> lf = new List<CFDI>();
         public async  Task<ActionResult> Index()
 		{
-			string servicio = "http://54.203.169.36/MRGFE/api/cfdi";
+			string servicio = "https://localhost:44370/api/cfdi";
 			var json = await httpClient.GetStringAsync(servicio);
-			var listaFacturas = JsonConvert.DeserializeObject<List<FacturaModel>>(json);
+			var listaFacturas = JsonConvert.DeserializeObject<List<CFDI>>(json);
 			
 			return View(listaFacturas);
 		}
@@ -40,8 +41,8 @@ namespace FacturamaConsumirApi.Controllers
 		public async Task<ActionResult> FacturasFolio(string FolioFiscal)
 		{
 			//string servicio = $"https://localhost:44323/api/CdfiByFolio/{FolioFiscal}";
-			List<FacturaModel> listaFacturas = new List<FacturaModel>();
-			List<FacturaModel> Facturita=new List<FacturaModel>();
+			List<CFDI> listaFacturas = new List<CFDI>();
+			List<CFDI> Facturita=new List<CFDI>();
 			//Response.Write("<script>alert('" + servicio + "')</script>");
 			using (var client = new HttpClient())
 			{
@@ -55,8 +56,8 @@ namespace FacturamaConsumirApi.Controllers
 				{
 					var CfdiResponse = Res.Content.ReadAsStringAsync().Result;
 					//Deserializing the response recieved from web api and storing into the Employee list
-					var factura = JsonConvert.DeserializeObject<FacturaModel>(CfdiResponse);
-					Facturita = new List<FacturaModel> { factura };
+					var factura = JsonConvert.DeserializeObject<CFDI>(CfdiResponse);
+					Facturita = new List<CFDI> { factura };
 					lf = Facturita;
 				}
 				return View("Index", Facturita);
@@ -67,13 +68,13 @@ namespace FacturamaConsumirApi.Controllers
 
 			//HttpException httpException = exception as HttpException;
 
-			//var factura = JsonConvert.DeserializeObject<FacturaModel>(json);
+			//var factura = JsonConvert.DeserializeObject<CFDI>(json);
 		}
 		public async Task<ActionResult> FacturasMultiFiltro(string fechaInicio,string fechaFin,string rfcEmisor,string rfcReceptor)
 		{
-            string servicio = $"http://54.203.169.36/MRGFE/api/cfdi/filtrar/?fechaInicio={fechaInicio}&fechaFin={fechaFin}&rfcEmisor={rfcEmisor}&rfcReceptor={rfcReceptor}";
+            string servicio = $"https://localhost:44370/api/cfdi/filtrar/?fechaInicio={fechaInicio}&fechaFin={fechaFin}&rfcEmisor={rfcEmisor}&rfcReceptor={rfcReceptor}";
             //Response.Write("<script>alert('" + servicio + "')</script>");
-            List<FacturaModel> EmpInfo = new List<FacturaModel>();
+            List<CFDI> EmpInfo = new List<CFDI>();
             using (var client = new HttpClient())
             {
                 //Passing service base url
@@ -89,7 +90,7 @@ namespace FacturamaConsumirApi.Controllers
                     //Storing the response details recieved from web api
                     var EmpResponse = Res.Content.ReadAsStringAsync().Result;
                     //Deserializing the response recieved from web api and storing into the Employee list
-                    EmpInfo = JsonConvert.DeserializeObject<List<FacturaModel>>(EmpResponse);
+                    EmpInfo = JsonConvert.DeserializeObject<List<CFDI>>(EmpResponse);
                     lf = EmpInfo;
                 }
                 //returning the employee list to view

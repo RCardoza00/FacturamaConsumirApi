@@ -21,13 +21,15 @@ function getDataFromTable() {
 
 		data.push({
 			numero: oCells.item(0).innerHTML,
-			folio: oCells.item(1).innerHTML,
-			emisor: oCells.item(2).innerHTML,
-			rfcEmisor: oCells.item(3).innerHTML,
-			receptor: oCells.item(4).innerHTML,
-			rfcReceptor: oCells.item(5).innerHTML,
-			fecha: oCells.item(6).innerHTML,
-			total: oCells.item(7).innerHTML
+			folioFiscal: oCells.item(1).innerHTML,
+			serie: oCells.item(2).innerHTML,
+			folio: oCells.item(3).innerHTML,
+			emisor: oCells.item(4).innerHTML,
+			rfcEmisor: oCells.item(5).innerHTML,
+			receptor: oCells.item(6).innerHTML,
+			rfcReceptor: oCells.item(7).innerHTML,
+			fecha: oCells.item(8).innerHTML,
+			total: oCells.item(9).innerHTML
 		});
 	}
 	return data;
