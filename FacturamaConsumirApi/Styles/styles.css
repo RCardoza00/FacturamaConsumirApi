@@ -1,0 +1,49 @@
+.red-link {
+  color: #BD2131;
+  text-decoration: none;
+}
+
+.red-btn {
+  background-color: #BD2131;
+  color: white;
+}
+
+.red-btn:hover {
+  background-color: #4f3237;
+  color: white;
+}
+
+.pattern {
+    background-color: #e5e5f7;
+    opacity: 0.7;
+    background: linear-gradient(135deg, #780d0d55 25%, transparent 25%) -29px 0/ 58px 58px, linear-gradient(225deg, #780d0d 25%, transparent 25%) -29px 0/ 58px 58px, linear-gradient(315deg, #780d0d55 25%, transparent 25%) 0px 0/ 58px 58px, linear-gradient(45deg, #780d0d 25%, #e5e5f7 25%) 0px 0/ 58px 58px;
+}
+
+.gray-border {
+  border-color: #688297;
+}
+
+.text-fs-14 {
+  font-size: 14px;
+}
+
+#box {
+  position: relative;
+}
+
+#box img {
+  display: block;
+}
+
+#box .static {
+  width: 100%;
+  height: auto;
+}
+
+#box .cat {
+  position: absolute;
+  top: -15px;
+  left: 38%;
+  height: auto;
+}
+

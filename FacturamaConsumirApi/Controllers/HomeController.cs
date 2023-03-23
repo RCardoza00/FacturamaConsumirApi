@@ -24,13 +24,13 @@ namespace FacturamaConsumirApi.Controllers
 {
 	public class HomeController : Controller
 	{
-		string Baseurl = "https://localhost:44370/";
+		string Baseurl = "http://54.203.169.36/MRGFE/";
 		static HttpClient httpClient = new HttpClient();
 
 		private static List<CFDI> lf = new List<CFDI>();
         public async  Task<ActionResult> Index()
 		{
-			string servicio = "https://localhost:44370/api/cfdi";
+			string servicio = "http://54.203.169.36/MRGFE/api/cfdi";
 			var json = await httpClient.GetStringAsync(servicio);
 			var listaFacturas = JsonConvert.DeserializeObject<List<CFDI>>(json);
 			
@@ -72,7 +72,7 @@ namespace FacturamaConsumirApi.Controllers
 		}
 		public async Task<ActionResult> FacturasMultiFiltro(string fechaInicio,string fechaFin,string rfcEmisor,string rfcReceptor)
 		{
-            string servicio = $"https://localhost:44370/api/cfdi/filtrar/?fechaInicio={fechaInicio}&fechaFin={fechaFin}&rfcEmisor={rfcEmisor}&rfcReceptor={rfcReceptor}";
+            string servicio = $"http://54.203.169.36/MRGFE/api/cfdi/filtrar/?fechaInicio={fechaInicio}&fechaFin={fechaFin}&rfcEmisor={rfcEmisor}&rfcReceptor={rfcReceptor}";
             //Response.Write("<script>alert('" + servicio + "')</script>");
             List<CFDI> EmpInfo = new List<CFDI>();
             using (var client = new HttpClient())
