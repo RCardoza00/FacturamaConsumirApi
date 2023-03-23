@@ -4,22 +4,23 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.WebPages;
 
 namespace FacturamaConsumirApi.Controllers
 {
     public class EmisorController : Controller
     {
+        string Baseurl = "https://localhost:44370/";
         static HttpClient httpClient = new HttpClient();
+        private static List<EmisorModel> le = new List<EmisorModel>();
+
 
         // GET: Emisor
-        public ActionResult IndexE()
-        {
-            return View();
-        }
-
         public async Task<ActionResult> Index()
         {
             string servicio = "https://localhost:44370/api/emisor";
@@ -30,9 +31,49 @@ namespace FacturamaConsumirApi.Controllers
         }
 
         // GET: Emisor/Details/5
-        public ActionResult Details(int id)
+        public async Task<ActionResult> Details(string id)
         {
-            return View();
+            EmisorModel emisor = new EmisorModel();
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(Baseurl);
+                client.DefaultRequestHeaders.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                HttpResponseMessage Res = await client.GetAsync("api/emisor/" + id);
+                if (Res.IsSuccessStatusCode)
+                {
+                    var EmisorResponse = Res.Content.ReadAsStringAsync().Result;
+                    emisor = JsonConvert.DeserializeObject<EmisorModel>(EmisorResponse);
+                }
+                return PartialView("Details", emisor);
+            }
+        }
+
+        // GET: Emisor/EmisorRfc/rfc
+        [HttpGet]
+        public async Task<ActionResult> EmisorRfc(string EmisorRfc)
+        {
+            if (!EmisorRfc.IsEmpty())
+            {
+                List<EmisorModel> emisorEncontrado = new List<EmisorModel>();
+                using (var client = new HttpClient())
+                {
+                    client.BaseAddress = new Uri(Baseurl);
+                    client.DefaultRequestHeaders.Clear();
+                    client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                    HttpResponseMessage Res = await client.GetAsync("api/emisor/" + EmisorRfc);
+                    if (Res.IsSuccessStatusCode)
+                    {
+                        var EmisorResponse = Res.Content.ReadAsStringAsync().Result;
+                        var emisor = JsonConvert.DeserializeObject<EmisorModel>(EmisorResponse);
+                        emisorEncontrado = new List<EmisorModel> { emisor };
+                        le = emisorEncontrado;
+                    }
+                    return View("Index", emisorEncontrado);
+
+                }
+            }
+            return RedirectToAction("Index");
         }
 
         // GET: Emisor/Create
@@ -43,11 +84,20 @@ namespace FacturamaConsumirApi.Controllers
 
         // POST: Emisor/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public async Task<ActionResult> Create(EmisorModel emisor)
         {
             try
             {
-                // TODO: Add insert logic here
+                var _httpClient = new HttpClient();
+                string servicio = "https://localhost:44370/api/emisor";
+                var cliente = new HttpClient();
+                cliente.BaseAddress = new Uri(servicio);
+
+                var payload = JsonConvert.SerializeObject(emisor);
+
+                var content = new StringContent(payload, Encoding.UTF8, "application/json");
+
+                var result = await _httpClient.PostAsync(servicio, content);
 
                 return RedirectToAction("Index");
             }
@@ -58,18 +108,40 @@ namespace FacturamaConsumirApi.Controllers
         }
 
         // GET: Emisor/Edit/5
-        public ActionResult Edit(int id)
+        public async Task<ActionResult> Edit(string id)
         {
-            return View();
+            EmisorModel emisor = new EmisorModel();
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(Baseurl);
+                client.DefaultRequestHeaders.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                HttpResponseMessage Res = await client.GetAsync("api/emisor/" + id);
+                if (Res.IsSuccessStatusCode)
+                {
+                    var EmisorResponse = Res.Content.ReadAsStringAsync().Result;
+                    emisor = JsonConvert.DeserializeObject<EmisorModel>(EmisorResponse);
+                }
+            }
+            return View(emisor);
         }
 
         // POST: Emisor/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public async Task<ActionResult> Edit(string id, EmisorModel emisor)
         {
             try
             {
-                // TODO: Add update logic here
+                var _httpClient = new HttpClient();
+                string servicio = "https://localhost:44370/api/emisor";
+                var cliente = new HttpClient();
+                cliente.BaseAddress = new Uri(servicio);
+
+                var payload = JsonConvert.SerializeObject(emisor);
+
+                var content = new StringContent(payload, Encoding.UTF8, "application/json");
+
+                var result = await _httpClient.PutAsync(servicio, content);
 
                 return RedirectToAction("Index");
             }
@@ -80,18 +152,39 @@ namespace FacturamaConsumirApi.Controllers
         }
 
         // GET: Emisor/Delete/5
-        public ActionResult Delete(int id)
+        public async Task<ActionResult> Delete(string id)
         {
-            return View();
+            EmisorModel emisor = new EmisorModel();
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(Baseurl);
+                client.DefaultRequestHeaders.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                HttpResponseMessage Res = await client.GetAsync("api/emisor/" + id);
+                if (Res.IsSuccessStatusCode)
+                {
+                    var EmisorResponse = Res.Content.ReadAsStringAsync().Result;
+                    emisor = JsonConvert.DeserializeObject<EmisorModel>(EmisorResponse);
+                }
+            }
+
+            return View(emisor);
         }
 
         // POST: Emisor/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public async Task<ActionResult> Delete(string id, EmisorModel emisor)
         {
             try
             {
-                // TODO: Add delete logic here
+                string rfc = emisor.EmisorRfc;
+                using (var client = new HttpClient())
+                {
+                    client.BaseAddress = new Uri(Baseurl);
+                    client.DefaultRequestHeaders.Clear();
+                    client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                    HttpResponseMessage Res = await client.DeleteAsync("api/emisor/" + id);
+                }
 
                 return RedirectToAction("Index");
             }
