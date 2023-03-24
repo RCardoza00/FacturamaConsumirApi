@@ -135,6 +135,7 @@
     <Compile Include="Models\CFDI.cs" />
     <Compile Include="Models\EmisorModel.cs" />
     <Compile Include="Models\FacturaModel.cs" />
+    <Compile Include="Models\Usuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -45,29 +45,41 @@
                             <h6 class="text-center text-muted card-subtitle mb-3 text-fs-14">
                                 Ingresa tus datos para entrar a la plataforma
                             </h6>
-                            <input type="text"
-                                   class="form-control mb-3 gray-border text-fs-14"
-                                   placeholder="Nombre de usuario" /><input type="password"
-                                                                            class="form-control mb-2 gray-border text-fs-14"
-                                                                            placeholder="Contraseña" />
-                            <div class="row">
-                                <div class="col">
-                                    <div class="form-check text-start">
-                                        <input class="form-check-input gray-border"
-                                               type="checkbox"
-                                               id="formCheck-1" /><label class="form-check-label text-muted text-fs-14"
-                                                                         for="formCheck-1">Recordar mis datos</label>
+                            <!-- [ INICIA ESPACIO PARA EL LOGIN ] -->
+                            <form method="post" action="@Url.Action("LogInUser", "Login")">
+                                <input type="text"
+                                       class="form-control mb-3 gray-border text-fs-14"
+                                       placeholder="Nombre de usuario"
+                                       name="correo"
+                                       required/>
+                                
+                                <input type="password" 
+                                       class="form-control mb-2 gray-border text-fs-14" 
+                                       placeholder="Contraseña"
+                                       name="password"
+                                       required/>
+
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="form-check text-start">
+                                            <input class="form-check-input gray-border"
+                                                   type="checkbox"
+                                                   id="formCheck-1" />
+                                            <label class="form-check-label text-muted text-fs-14"
+                                                for="formCheck-1">Recordar mis datos</label>
+                                        </div>
+                                    </div>
+                                    <div class="col text-end">
+                                        <a class="red-link text-fs-14" href="#">Olvidé mi contraseña</a>
                                     </div>
                                 </div>
-                                <div class="col text-end">
-                                    <a class="red-link text-fs-14" href="#">Olvidé mi contraseña</a>
+                                <div class="text-center mt-4 mb-3">
+                                    <button class="btn red-btn px-5" type="submit">
+                                        Ingresar
+                                    </button>
                                 </div>
-                            </div>
-                            <div class="text-center mt-4 mb-3">
-                                <button class="btn red-btn px-5" type="button">
-                                    Ingresar
-                                </button>
-                            </div>
+                            </form>
+                            <!-- [ TERMINA ESPACIO PARA EL LOGIN ] -->
                         </div>
                     </div>
                 </div>
