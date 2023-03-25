@@ -1,4 +1,5 @@
-﻿using FacturamaConsumirApi.Models;
+﻿using FacturamaConsumirApi.Filters;
+using FacturamaConsumirApi.Models;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -19,7 +20,7 @@ namespace FacturamaConsumirApi.Controllers
         static HttpClient httpClient = new HttpClient();
         private static List<EmisorModel> le = new List<EmisorModel>();
 
-
+        [AutorizarUsuario(rol: "ADMINISTRADOR")]
         // GET: Emisor
         public async Task<ActionResult> Index()
         {
@@ -30,6 +31,7 @@ namespace FacturamaConsumirApi.Controllers
             return View(listaEmisores);
         }
 
+        [AutorizarUsuario(rol: "ADMINISTRADOR")]
         // GET: Emisor/Details/5
         public async Task<ActionResult> Details(string id)
         {
@@ -76,6 +78,7 @@ namespace FacturamaConsumirApi.Controllers
             return RedirectToAction("Index");
         }
 
+        [AutorizarUsuario(rol: "ADMINISTRADOR")]
         // GET: Emisor/Create
         public ActionResult Create()
         {
@@ -107,6 +110,7 @@ namespace FacturamaConsumirApi.Controllers
             }
         }
 
+        [AutorizarUsuario(rol: "ADMINISTRADOR")]
         // GET: Emisor/Edit/5
         public async Task<ActionResult> Edit(string id)
         {
@@ -151,6 +155,7 @@ namespace FacturamaConsumirApi.Controllers
             }
         }
 
+        [AutorizarUsuario(rol: "ADMINISTRADOR")]
         // GET: Emisor/Delete/5
         public async Task<ActionResult> Delete(string id)
         {
