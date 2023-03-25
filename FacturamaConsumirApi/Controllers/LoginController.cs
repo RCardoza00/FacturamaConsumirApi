@@ -33,9 +33,10 @@ namespace FacturamaConsumirApi.Controllers
 
         [HttpPost]
         public async Task<ActionResult> LogInUser() {
+            bool recordar = Request.Params["recordar"] == "on";
             string servicio = $"{Baseurl}autenticar/?correo={Request.Params["correo"]}&password={Request.Params["password"]}";
             // string content = $"{{\"UsuarioCorreo\": \"{Request.Params["correo"]}\"\n\"UsuarioPassword\": \"{Request.Params["password"]}\"}}";
-            
+
             HttpResponseMessage res = await httpClient.GetAsync(servicio);
             Usuario usr = new Usuario();
             if (res.IsSuccessStatusCode)
@@ -46,8 +47,32 @@ namespace FacturamaConsumirApi.Controllers
             }
 
             if (usr.UsuarioNombre == null) {
-                return View("Sign_In");
+                return Redirect("Sign_In");
             }
+
+            FormsAuthenticationTicket tkt;
+            string cookiestr;
+            HttpCookie ck;
+            
+            tkt = new FormsAuthenticationTicket(
+                1, 
+                usr.UsuarioNombre, 
+                DateTime.Now,
+                DateTime.Now.AddMinutes(30), 
+                recordar, 
+                $"{usr.UsuarioCorreo}|{usr.UsuarioRol}"
+            );
+            
+            cookiestr = FormsAuthentication.Encrypt(tkt);
+            
+            ck = new HttpCookie(FormsAuthentication.FormsCookieName, cookiestr);
+            if (recordar)
+            {
+                ck.Expires = tkt.Expiration;
+            }
+            ck.Path = FormsAuthentication.FormsCookiePath;
+            Response.Cookies.Add(ck);
+
             /*
             List<Claim> clms = new List<Claim>();
             clms.Add(new Claim(ClaimTypes.Name, usr.UsuarioNombre));
@@ -71,12 +96,14 @@ namespace FacturamaConsumirApi.Controllers
             Thread.CurrentPrincipal = principal;
             */
 
-            var cookieText = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(usr));
+            // [<( ULTIMA FORMA UTILIZADA )>]
+            /*var cookieText = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(usr));
             var encryptedValue = Convert.ToBase64String(MachineKey.Protect(cookieText, "ProtectCookie"));
             var cookie = new HttpCookie("ConfirmedUser");
             cookie.Value = encryptedValue;
             cookie.Expires = DateTime.Now.AddMinutes(30);
-            Response.Cookies.Add(cookie);
+            Response.Cookies.Add(cookie);*/
+            // [<( /ULTIMA FORMA UTILIZADA )>]
 
             /*
              Para desencriptar el valor de la Cookie:
