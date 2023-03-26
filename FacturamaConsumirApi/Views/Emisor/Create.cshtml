@@ -111,18 +111,18 @@
             <div class="row mb-3">
                 <div class="col-md-2">
                     <div class="form-group">
-                        @Html.LabelFor(model => model.EmisorRfc, htmlAttributes: new { @class = "control-label" })
+                        @Html.LabelFor(model => model.EmisorRfc, htmlAttributes: new { @class = "control-label fw-semibold " })
                         <div>
-                            @Html.EditorFor(model => model.EmisorRfc, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.EditorFor(model => model.EmisorRfc, new { htmlAttributes = new { @class = "form-control", placeholder = "Ej. XAXX010101000" } })
                             @Html.ValidationMessageFor(model => model.EmisorRfc, "", new { @class = "text-danger" })
                         </div>
                     </div>
                 </div>
                 <div class="col-md-8">
                     <div class="form-group">
-                        @Html.LabelFor(model => model.EmisorRazSocial, htmlAttributes: new { @class = "control-label" })
+                        @Html.LabelFor(model => model.EmisorRazSocial, htmlAttributes: new { @class = "control-label fw-semibold" })
                         <div>
-                            @Html.EditorFor(model => model.EmisorRazSocial, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.EditorFor(model => model.EmisorRazSocial, new { htmlAttributes = new { @class = "form-control", placeholder = "Ej. Mi Empresa S.A. de C.V." } })
                             @Html.ValidationMessageFor(model => model.EmisorRazSocial, "", new { @class = "text-danger" })
                         </div>
                     </div>
@@ -132,9 +132,9 @@
             <div class="row mb-3">
                 <div class="col-md-2">
                     <div class="form-group">
-                        @Html.LabelFor(model => model.EmisorEstatus, htmlAttributes: new { @class = "control-label" })
+                        @Html.LabelFor(model => model.EmisorEstatus, htmlAttributes: new { @class = "control-label fw-semibold" })
                         <div>
-                            @Html.EditorFor(model => model.EmisorEstatus, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.EditorFor(model => model.EmisorEstatus, new { htmlAttributes = new { @class = "form-control", placeholder = "Ej. Activo" } })
                             @Html.ValidationMessageFor(model => model.EmisorEstatus, "", new { @class = "text-danger" })
                         </div>
                     </div>
@@ -142,9 +142,9 @@
 
                 <div class="col-md-2">
                     <div class="form-group">
-                        @Html.LabelFor(model => model.EmisorRegFiscal, htmlAttributes: new { @class = "control-label" })
+                        @Html.LabelFor(model => model.EmisorRegFiscal, htmlAttributes: new { @class = "control-label fw-semibold" })
                         <div>
-                            @Html.EditorFor(model => model.EmisorRegFiscal, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.EditorFor(model => model.EmisorRegFiscal, new { htmlAttributes = new { @class = "form-control", placeholder = "Ej. 601" } })
                             @Html.ValidationMessageFor(model => model.EmisorRegFiscal, "", new { @class = "text-danger" })
                         </div>
                     </div>
@@ -152,7 +152,7 @@
 
                 <div class="col-md-2">
                     <div class="form-group">
-                        @Html.LabelFor(model => model.EmisorIdExterno1, htmlAttributes: new { @class = "control-label" })
+                        @Html.LabelFor(model => model.EmisorIdExterno1, htmlAttributes: new { @class = "control-label fw-semibold" })
                         <div>
                             @Html.EditorFor(model => model.EmisorIdExterno1, new { htmlAttributes = new { @class = "form-control" } })
                             @Html.ValidationMessageFor(model => model.EmisorIdExterno1, "", new { @class = "text-danger" })
@@ -162,7 +162,7 @@
 
                 <div class="col-md-2">
                     <div class="form-group">
-                        @Html.LabelFor(model => model.EmisorIdExterno2, htmlAttributes: new { @class = "control-label" })
+                        @Html.LabelFor(model => model.EmisorIdExterno2, htmlAttributes: new { @class = "control-label fw-semibold" })
                         <div>
                             @Html.EditorFor(model => model.EmisorIdExterno2, new { htmlAttributes = new { @class = "form-control" } })
                             @Html.ValidationMessageFor(model => model.EmisorIdExterno2, "", new { @class = "text-danger" })
@@ -172,7 +172,7 @@
 
                 <div class="col-md-2">
                     <div class="form-group">
-                        @Html.LabelFor(model => model.EmisorIdExterno3, htmlAttributes: new { @class = "control-label" })
+                        @Html.LabelFor(model => model.EmisorIdExterno3, htmlAttributes: new { @class = "control-label fw-semibold" })
                         <div>
                             @Html.EditorFor(model => model.EmisorIdExterno3, new { htmlAttributes = new { @class = "form-control" } })
                             @Html.ValidationMessageFor(model => model.EmisorIdExterno3, "", new { @class = "text-danger" })
@@ -184,19 +184,19 @@
             <div class="row mb-3">
                 <div class="col-md-4">
                     <div class="form-group">
-                        @Html.LabelFor(model => model.EmisorCorreo, htmlAttributes: new { @class = "control-label" })
+                        @Html.LabelFor(model => model.EmisorCorreo, htmlAttributes: new { @class = "control-label fw-semibold" })
                         <div>
-                            @Html.EditorFor(model => model.EmisorCorreo, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.EditorFor(model => model.EmisorCorreo, new { htmlAttributes = new { @class = "form-control", placeholder = "ejemplo@mail.com" } })
                             @Html.ValidationMessageFor(model => model.EmisorCorreo, "", new { @class = "text-danger" })
                         </div>
                     </div>
                 </div>
-
+                
                 <div class="col-md-6">
                     <div class="form-group">
-                        @Html.LabelFor(model => model.EmisorLogoUrl, htmlAttributes: new { @class = "control-label" })
+                        @Html.LabelFor(model => model.EmisorLogoUrl, htmlAttributes: new { @class = "control-label fw-semibold" })
                         <div>
-                            @Html.EditorFor(model => model.EmisorLogoUrl, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.TextAreaFor(model => model.EmisorLogoUrl, new { @class = "form-control", rows = 2 })
                             @Html.ValidationMessageFor(model => model.EmisorLogoUrl, "", new { @class = "text-danger" })
                         </div>
                     </div>
@@ -206,9 +206,9 @@
             <div class="row mb-3">
                 <div class="col-md-2">
                     <div class="form-group">
-                        @Html.LabelFor(model => model.EmisorCodPostal, htmlAttributes: new { @class = "control-label" })
+                        @Html.LabelFor(model => model.EmisorCodPostal, htmlAttributes: new { @class = "control-label fw-semibold" })
                         <div>
-                            @Html.EditorFor(model => model.EmisorCodPostal, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.EditorFor(model => model.EmisorCodPostal, new { htmlAttributes = new { @class = "form-control", placeholder = "Ej. 85000" } })
                             @Html.ValidationMessageFor(model => model.EmisorCodPostal, "", new { @class = "text-danger" })
                         </div>
                     </div>
@@ -216,9 +216,9 @@
 
                 <div class="col-md-3">
                     <div class="form-group">
-                        @Html.LabelFor(model => model.EmisorMunicipio, htmlAttributes: new { @class = "control-label" })
+                        @Html.LabelFor(model => model.EmisorMunicipio, htmlAttributes: new { @class = "control-label fw-semibold" })
                         <div>
-                            @Html.EditorFor(model => model.EmisorMunicipio, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.EditorFor(model => model.EmisorMunicipio, new { htmlAttributes = new { @class = "form-control", placeholder = "Ej. Saltillo" } })
                             @Html.ValidationMessageFor(model => model.EmisorMunicipio, "", new { @class = "text-danger" })
                         </div>
                     </div>
@@ -226,9 +226,9 @@
 
                 <div class="col-md-2">
                     <div class="form-group">
-                        @Html.LabelFor(model => model.EmisorEstado, htmlAttributes: new { @class = "control-label" })
+                        @Html.LabelFor(model => model.EmisorEstado, htmlAttributes: new { @class = "control-label fw-semibold" })
                         <div>
-                            @Html.EditorFor(model => model.EmisorEstado, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.EditorFor(model => model.EmisorEstado, new { htmlAttributes = new { @class = "form-control", placeholder = "Ej. Coahuila" } })
                             @Html.ValidationMessageFor(model => model.EmisorEstado, "", new { @class = "text-danger" })
                         </div>
                     </div>
@@ -236,9 +236,9 @@
 
                 <div class="col-md-3">
                     <div class="form-group">
-                        @Html.LabelFor(model => model.EmisorColonia, htmlAttributes: new { @class = "control-label" })
+                        @Html.LabelFor(model => model.EmisorColonia, htmlAttributes: new { @class = "control-label fw-semibold" })
                         <div>
-                            @Html.EditorFor(model => model.EmisorColonia, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.EditorFor(model => model.EmisorColonia, new { htmlAttributes = new { @class = "form-control", placeholder = "Ej. Topochico" } })
                             @Html.ValidationMessageFor(model => model.EmisorColonia, "", new { @class = "text-danger" })
                         </div>
                     </div>
@@ -248,9 +248,9 @@
             <div class="row mb-3">
                 <div class="col-md-4">
                     <div class="form-group">
-                        @Html.LabelFor(model => model.EmisorCalle, htmlAttributes: new { @class = "control-label" })
+                        @Html.LabelFor(model => model.EmisorCalle, htmlAttributes: new { @class = "control-label fw-semibold" })
                         <div>
-                            @Html.EditorFor(model => model.EmisorCalle, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.EditorFor(model => model.EmisorCalle, new { htmlAttributes = new { @class = "form-control", placeholder = "Ej. Felipe Angeles" } })
                             @Html.ValidationMessageFor(model => model.EmisorCalle, "", new { @class = "text-danger" })
                         </div>
                     </div>
@@ -258,7 +258,7 @@
 
                 <div class="col-md-2">
                     <div class="form-group">
-                        @Html.LabelFor(model => model.EmisorNoExterior, htmlAttributes: new { @class = "control-label" })
+                        @Html.LabelFor(model => model.EmisorNoExterior, htmlAttributes: new { @class = "control-label fw-semibold" })
                         <div>
                             @Html.EditorFor(model => model.EmisorNoExterior, new { htmlAttributes = new { @class = "form-control" } })
                             @Html.ValidationMessageFor(model => model.EmisorNoExterior, "", new { @class = "text-danger" })
@@ -268,7 +268,7 @@
 
                 <div class="col-md-2">
                     <div class="form-group">
-                        @Html.LabelFor(model => model.EmisorNoInterior, htmlAttributes: new { @class = "control-label" })
+                        @Html.LabelFor(model => model.EmisorNoInterior, htmlAttributes: new { @class = "control-label fw-semibold" })
                         <div>
                             @Html.EditorFor(model => model.EmisorNoInterior, new { htmlAttributes = new { @class = "form-control" } })
                             @Html.ValidationMessageFor(model => model.EmisorNoInterior, "", new { @class = "text-danger" })
@@ -278,7 +278,7 @@
 
                 <div class="col-md-2">
                     <div class="form-group">
-                        @Html.LabelFor(model => model.EmisorFolioInic, htmlAttributes: new { @class = "control-label" })
+                        @Html.LabelFor(model => model.EmisorFolioInic, htmlAttributes: new { @class = "control-label fw-semibold" })
                         <div>
                             @Html.EditorFor(model => model.EmisorFolioInic, new { htmlAttributes = new { @class = "form-control" } })
                             @Html.ValidationMessageFor(model => model.EmisorFolioInic, "", new { @class = "text-danger" })
@@ -293,10 +293,10 @@
             <div class="form-group">
                 <div class="row">
                     <div class="col-md-offset-2 col-md-6">
-                        <input type="button" value="Regresar" class="btn d-flex justify-content-center align-items-center w-50 btn-secondary" onclick="location.href='/emisor/index';" />
+                        <input type="button" value="Regresar" class="btn d-flex justify-content-center align-items-center w-50 btn-secondary" id="btn-bootstrap" onclick="location.href='/emisor/index';" />
                     </div>
                     <div class="col-md-offset-2 col-md-6">
-                        <input type="submit" value="Crear" class="btn d-flex justify-content-center align-items-center w-50 btn-secondary-700" />
+                        <input type="submit" value="Crear" class="btn d-flex justify-content-center align-items-center w-50 btn-success" id="btn-bootstrap" />
                     </div>
                 </div>
             </div>
