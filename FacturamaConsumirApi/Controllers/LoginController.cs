@@ -43,10 +43,12 @@ namespace FacturamaConsumirApi.Controllers
                 var usrResponse = res.Content.ReadAsStringAsync().Result;
                 var usrlst = JsonConvert.DeserializeObject<List<Usuario>>(usrResponse.ToString());
                 usr = usrlst[0];
+
+                Session["User"] = usr;
             }
 
             if (usr.UsuarioNombre == null) {
-                return View("Sign_In");
+                return Redirect("Sign_In");
             }
             /*
             List<Claim> clms = new List<Claim>();
