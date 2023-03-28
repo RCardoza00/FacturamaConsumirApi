@@ -15,7 +15,7 @@ namespace FacturamaConsumirApi.Filters
 
         public AutorizarUsuario(string rol = "")
         {
-            this.rol = rol;
+            this.rol = "User";
         }
 
         public override void OnAuthorization(AuthorizationContext filterContext)

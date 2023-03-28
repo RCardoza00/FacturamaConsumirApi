@@ -126,6 +126,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\ConfigCamposController.cs" />
     <Compile Include="Controllers\EmisorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
@@ -134,9 +135,11 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\CampoMirageModel.cs" />
     <Compile Include="Models\CFDI.cs" />
     <Compile Include="Models\EmisorModel.cs" />
     <Compile Include="Models\FacturaModel.cs" />
+    <Compile Include="Models\ProveedorCamposModel.cs" />
     <Compile Include="Models\Usuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -195,6 +198,8 @@
     <Content Include="Views\Shared\Login.cshtml" />
     <Content Include="Views\Login\Sign_In.cshtml" />
     <Content Include="Views\Shared\_LoginTest.cshtml" />
+    <Content Include="Views\ConfigCampos\Index.cshtml" />
+    <Content Include="Views\Shared\_ConfigCampos.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

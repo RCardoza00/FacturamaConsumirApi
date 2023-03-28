@@ -8,7 +8,7 @@ namespace FacturamaConsumirApi
 		public static void RegisterGlobalFilters(GlobalFilterCollection filters)
 		{
 			filters.Add(new HandleErrorAttribute());
-			filters.Add(new Filters.VerificarSession());
+			//filters.Add(new Filters.VerificarSession());
 		}
 	}
 }

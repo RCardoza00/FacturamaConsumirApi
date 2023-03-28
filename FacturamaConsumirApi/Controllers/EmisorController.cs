@@ -16,7 +16,7 @@ namespace FacturamaConsumirApi.Controllers
 {
     public class EmisorController : Controller
     {
-        string Baseurl = "https://localhost:44370/";
+        string Baseurl = "http://54.203.169.36/";
         static HttpClient httpClient = new HttpClient();
         private static List<EmisorModel> le = new List<EmisorModel>();
 
@@ -24,7 +24,7 @@ namespace FacturamaConsumirApi.Controllers
         // GET: Emisor
         public async Task<ActionResult> Index()
         {
-            string servicio = "https://localhost:44370/api/emisor";
+            string servicio = "http://54.203.169.36/api/emisor";
             var json = await httpClient.GetStringAsync(servicio);
             var listaEmisores = JsonConvert.DeserializeObject<List<EmisorModel>>(json);
 
@@ -92,7 +92,7 @@ namespace FacturamaConsumirApi.Controllers
             try
             {
                 var _httpClient = new HttpClient();
-                string servicio = "https://localhost:44370/api/emisor";
+                string servicio = "http://54.203.169.36/api/emisor";
                 var cliente = new HttpClient();
                 cliente.BaseAddress = new Uri(servicio);
 
@@ -137,7 +137,7 @@ namespace FacturamaConsumirApi.Controllers
             try
             {
                 var _httpClient = new HttpClient();
-                string servicio = "https://localhost:44370/api/emisor";
+                string servicio = "http://54.203.169.36/api/emisor";
                 var cliente = new HttpClient();
                 cliente.BaseAddress = new Uri(servicio);
 
