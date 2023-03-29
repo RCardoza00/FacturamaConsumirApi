@@ -27,7 +27,6 @@ namespace FacturamaConsumirApi.Controllers
 		string Baseurl = "http://54.203.169.36/MRGFE/";
 		static HttpClient httpClient = new HttpClient();
 
-		private static List<CFDI> lf = new List<CFDI>();
         public async  Task<ActionResult> Index()
 		{
 			string servicio = "http://54.203.169.36/MRGFE/api/cfdi";
@@ -41,7 +40,7 @@ namespace FacturamaConsumirApi.Controllers
 		public async Task<ActionResult> FacturasFolio(string FolioFiscal)
 		{
 			//string servicio = $"https://localhost:44323/api/CdfiByFolio/{FolioFiscal}";
-			List<CFDI> listaFacturas = new List<CFDI>();
+			// List<CFDI> listaFacturas = new List<CFDI>();
 			List<CFDI> Facturita=new List<CFDI>();
 			//Response.Write("<script>alert('" + servicio + "')</script>");
 			using (var client = new HttpClient())
@@ -58,7 +57,6 @@ namespace FacturamaConsumirApi.Controllers
 					//Deserializing the response recieved from web api and storing into the Employee list
 					var factura = JsonConvert.DeserializeObject<CFDI>(CfdiResponse);
 					Facturita = new List<CFDI> { factura };
-					lf = Facturita;
 				}
 				return View("Index", Facturita);
 
@@ -91,7 +89,6 @@ namespace FacturamaConsumirApi.Controllers
                     var EmpResponse = Res.Content.ReadAsStringAsync().Result;
                     //Deserializing the response recieved from web api and storing into the Employee list
                     EmpInfo = JsonConvert.DeserializeObject<List<CFDI>>(EmpResponse);
-                    lf = EmpInfo;
                 }
                 //returning the employee list to view
                 return View("Index", EmpInfo);
@@ -99,15 +96,29 @@ namespace FacturamaConsumirApi.Controllers
             }
         }
 
-		public ActionResult DownloadCfdiZip()
+		public async Task<ActionResult> DownloadCfdiZip(string fls)
 		{
-			if (lf != null && lf.Count() > 0)
+            string servicio = "api/cfdi/folio=";
+            List<string> strs = JsonConvert.DeserializeObject<List<string>>(fls);
+            List<CFDI> cfdis = new List<CFDI>();
+            foreach (var fl in strs)
+            {
+                HttpResponseMessage Res = await httpClient.GetAsync(Baseurl + servicio + fl);
+                if (Res.IsSuccessStatusCode)
+                {
+                    var CfdiResponse = Res.Content.ReadAsStringAsync().Result;
+                    var factura = JsonConvert.DeserializeObject<CFDI>(CfdiResponse);
+                    cfdis.Add(factura);
+                }
+            }
+
+			if (cfdis != null && cfdis.Count() > 0)
 			{
                 using (MemoryStream ms = new MemoryStream())
                 {
                     using (var zip = new ZipArchive(ms, ZipArchiveMode.Create, true))
                     {
-                        foreach (var item in lf)
+                        foreach (var item in cfdis)
                         {
                             var entryPdf = zip.CreateEntry($"{item.CfdiFolioFiscal}.pdf");
                             using (var fileStreamPdf = new MemoryStream(item.CfdiIPdf))
@@ -127,7 +138,7 @@ namespace FacturamaConsumirApi.Controllers
                             }
                         }
                     }
-                    return File(ms.ToArray(), "application/pdf", "prueba.zip");
+                    return File(ms.ToArray(), "application/zip", "CFDIs.zip");
                 }
             }
             return new HttpStatusCodeResult(HttpStatusCode.NoContent);

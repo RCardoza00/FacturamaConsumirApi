@@ -137,6 +137,7 @@
     </Compile>
     <Compile Include="Models\CampoMirageModel.cs" />
     <Compile Include="Models\CFDI.cs" />
+    <Compile Include="Models\Emisor.cs" />
     <Compile Include="Models\EmisorModel.cs" />
     <Compile Include="Models\FacturaModel.cs" />
     <Compile Include="Models\ProveedorCamposModel.cs" />

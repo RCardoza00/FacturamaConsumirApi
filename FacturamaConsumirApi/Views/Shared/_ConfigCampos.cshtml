@@ -293,14 +293,6 @@
     <script src="~/Scripts/JavaScript.js"></script>
     <script src="~/Scripts/export-csv.js"></script>
     <script>
-        function determinaAccion() {
-            if (document.getElementById('radioBtnFecha').checked) {
-                location.href = '@Url.Action("FacturasMultiFiltro", "Home")?fechaInicio=' + document.getElementById('startDate').value + '&fechaFin=' + document.getElementById('endDate').value + '&rfcEmisor=' + document.getElementById("rfcEmisor").value + '&rfcReceptor=' + document.getElementById("rfcReceptor").value + '&serie=' + document.getElementById("serie").value + '&folio=' + document.getElementById("folio").value;
-            } else if (document.getElementById('radioBtnFolio').checked) {
-                location.href = '@Url.Action("FacturasFolio", "Home")?FolioFiscal=' + document.getElementById('FolioFiscal').value;
-            }
-        }
-
         $(document).ready(function () {
             var selectedRow = null;
 
