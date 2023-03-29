@@ -109,9 +109,9 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.EmisorRfc, htmlAttributes: new { @class = "control-label fw-semibold" })
                 <div>
-                    @Html.EditorFor(model => model.EmisorRfc, new { htmlAttributes = new { @class = "form-control disabled-input", disabled = "disabled" } })
+                    @Html.EditorFor(model => model.EmisorRfc, new { htmlAttributes = new { @class = "form-control disabled-input"} })
 
-                    @Html.ValidationMessageFor(model => model.EmisorRfc, "", new { @class = "text-danger" })
+                    
                 </div>
             </div>
         </div>
