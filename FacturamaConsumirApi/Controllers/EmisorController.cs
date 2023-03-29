@@ -16,22 +16,22 @@ namespace FacturamaConsumirApi.Controllers
 {
     public class EmisorController : Controller
     {
-        string Baseurl = "http://54.203.169.36/";
+        string Baseurl = "http://54.203.169.36/MRGFE/";
         static HttpClient httpClient = new HttpClient();
         private static List<EmisorModel> le = new List<EmisorModel>();
 
-        [AutorizarUsuario(rol: "ADMINISTRADOR")]
+        //[AutorizarUsuario(rol: "ADMINISTRADOR")]
         // GET: Emisor
         public async Task<ActionResult> Index()
         {
-            string servicio = "http://54.203.169.36/api/emisor";
+            string servicio = "http://54.203.169.36/MRGFE/api/emisor";
             var json = await httpClient.GetStringAsync(servicio);
             var listaEmisores = JsonConvert.DeserializeObject<List<EmisorModel>>(json);
 
             return View(listaEmisores);
         }
 
-        [AutorizarUsuario(rol: "ADMINISTRADOR")]
+        //[AutorizarUsuario(rol: "ADMINISTRADOR")]
         // GET: Emisor/Details/5
         public async Task<ActionResult> Details(string id)
         {
@@ -78,7 +78,7 @@ namespace FacturamaConsumirApi.Controllers
             return RedirectToAction("Index");
         }
 
-        [AutorizarUsuario(rol: "ADMINISTRADOR")]
+        //[AutorizarUsuario(rol: "ADMINISTRADOR")]
         // GET: Emisor/Create
         public ActionResult Create()
         {
@@ -110,7 +110,7 @@ namespace FacturamaConsumirApi.Controllers
             }
         }
 
-        [AutorizarUsuario(rol: "ADMINISTRADOR")]
+        //[AutorizarUsuario(rol: "ADMINISTRADOR")]
         // GET: Emisor/Edit/5
         public async Task<ActionResult> Edit(string id)
         {
@@ -154,8 +154,8 @@ namespace FacturamaConsumirApi.Controllers
                 return View();
             }
         }
-
-        [AutorizarUsuario(rol: "ADMINISTRADOR")]
+        
+        //[AutorizarUsuario(rol: "ADMINISTRADOR")]
         // GET: Emisor/Delete/5
         public async Task<ActionResult> Delete(string id)
         {

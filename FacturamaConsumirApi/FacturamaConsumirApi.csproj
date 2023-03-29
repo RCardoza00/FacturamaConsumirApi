@@ -201,6 +201,7 @@
     <Content Include="Views\Shared\_LoginTest.cshtml" />
     <Content Include="Views\ConfigCampos\Index.cshtml" />
     <Content Include="Views\Shared\_ConfigCampos.cshtml" />
+    <Content Include="Views\Shared\_BarMenu.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
