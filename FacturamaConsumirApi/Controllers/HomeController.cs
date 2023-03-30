@@ -96,40 +96,29 @@ namespace FacturamaConsumirApi.Controllers
             }
         }
 
-		public async Task<ActionResult> DownloadCfdiZip(string fls)
+        [HttpPost]
+		public ActionResult DownloadCfdiZip(List<string> fls, List<string> xmls, List<string> pdfs)
 		{
-            string servicio = "api/cfdi/folio=";
-            List<string> strs = JsonConvert.DeserializeObject<List<string>>(fls);
-            List<CFDI> cfdis = new List<CFDI>();
-            foreach (var fl in strs)
+            if (fls != null && fls.Count() > 0 && 
+                xmls != null && xmls.Count() > 0  && 
+                pdfs != null && pdfs.Count() > 0)
             {
-                HttpResponseMessage Res = await httpClient.GetAsync(Baseurl + servicio + fl);
-                if (Res.IsSuccessStatusCode)
-                {
-                    var CfdiResponse = Res.Content.ReadAsStringAsync().Result;
-                    var factura = JsonConvert.DeserializeObject<CFDI>(CfdiResponse);
-                    cfdis.Add(factura);
-                }
-            }
-
-			if (cfdis != null && cfdis.Count() > 0)
-			{
                 using (MemoryStream ms = new MemoryStream())
                 {
                     using (var zip = new ZipArchive(ms, ZipArchiveMode.Create, true))
                     {
-                        foreach (var item in cfdis)
+                        for (int i = 0; i < fls.Count(); i++)
                         {
-                            var entryPdf = zip.CreateEntry($"{item.CfdiFolioFiscal}.pdf");
-                            using (var fileStreamPdf = new MemoryStream(item.CfdiIPdf))
+                            var entryPdf = zip.CreateEntry($"{fls[i]}.pdf");
+                            using (var fileStreamPdf = new MemoryStream(Convert.FromBase64String(pdfs[i])))
                             {
                                 using (var entryStream = entryPdf.Open())
                                 {
                                     fileStreamPdf.CopyTo(entryStream);
                                 }
                             }
-                            var entryXml = zip.CreateEntry($"{item.CfdiFolioFiscal}.xml");
-                            using (var fileStreamXml = new MemoryStream(item.CfdiIXml))
+                            var entryXml = zip.CreateEntry($"{fls[i]}.xml");
+                            using (var fileStreamXml = new MemoryStream(Convert.FromBase64String(xmls[i])))
                             {
                                 using (var entryStream = entryXml.Open())
                                 {
