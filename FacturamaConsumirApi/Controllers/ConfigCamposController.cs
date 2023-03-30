@@ -18,22 +18,36 @@ namespace FacturamaConsumirApi.Controllers
 		// GET: ConfigCampos
 		public async Task<ActionResult> Index()
 		{
-			string servicioProveedor = "http://54.203.169.36/MRGFE/api/campoproveedor";
-			var jsonProveedor = await httpClient.GetStringAsync(servicioProveedor);
-			var listaCamposProveedor = JsonConvert.DeserializeObject<List<ProveedorCamposModel>>(jsonProveedor);
 
-			string servicioMirage = "http://54.203.169.36/MRGFE/api/campomirage";
-			var jsonMirage = await httpClient.GetStringAsync(servicioMirage);
-			var listaCamposMirage = JsonConvert.DeserializeObject<List<CampoMirageModel>>(jsonMirage);
+			List<ProveedorCamposModel> camposProveedor = new List<ProveedorCamposModel>();
+			List<CampoMirageModel> camposMirage = new List<CampoMirageModel>();
 
-			// Eliminar los campos que ya existen en la tabla de la vista de campos Mirage
-			var camposProveedorNoAgregados = listaCamposProveedor
-				.Where(p => !listaCamposMirage.Any(m => m.CamposMiCampo == p.CamposPrCampo))
-				.ToList();
+			try
+			{
+				string servicioProveedor = "http://54.203.169.36/MRGFE/api/campoproveedor";
+				var jsonProveedor = await httpClient.GetStringAsync(servicioProveedor);
+				camposProveedor = JsonConvert.DeserializeObject<List<ProveedorCamposModel>>(jsonProveedor);
 
-			var model = new Tuple<List<ProveedorCamposModel>, List<CampoMirageModel>>(camposProveedorNoAgregados, listaCamposMirage);
+				string servicioMirage = "http://54.203.169.36/MRGFE/api/campomirage";
+				var jsonMirage = await httpClient.GetStringAsync(servicioMirage);
+				camposMirage = JsonConvert.DeserializeObject<List<CampoMirageModel>>(jsonMirage);
 
-			return View(model);
+				// Eliminar los campos que ya existen en la tabla de la vista de campos Mirage
+				var camposProveedorNoAgregados = camposProveedor
+					.Where(p => !camposMirage.Any(m => m.CamposMiCampo == p.CamposPrCampo))
+					.ToList();
+
+				var model = new Tuple<List<ProveedorCamposModel>, List<CampoMirageModel>>(camposProveedorNoAgregados, camposMirage);
+				return View(model);
+			}
+			catch (Exception ex)
+			{
+				Console.WriteLine(ex.Message);
+			}
+
+			// en caso de error, regreos una tupla vacia en la vista
+			var emptyModel = new Tuple<List<ProveedorCamposModel>, List<CampoMirageModel>>(camposProveedor, camposMirage);
+			return View(emptyModel);
 		}
 
 		[HttpPost]
